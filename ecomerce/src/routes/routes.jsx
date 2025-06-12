@@ -1,24 +1,14 @@
 import { Route, Routes } from "react-router-dom";
-// import { HomePage } from "../pages/homepage/home";
-// import { FormPage } from "../pages/form/form";
-// import { About } from "../pages/about/about";
-// import { NotFoundPage } from "../pages/notFound/not-found";
-// import { Products } from "../pages/products/products";
-// import { Pokemon } from "../pages/pokemon/pokemon";
 import { Login } from "../pages/login/login";
+import { Home } from "../pages/home/home";
+import { HomeFuncionario } from "../pages/homeFuncionario/HomeFuncionario";
 
 export function Rotas() {
   return (
     <Routes>
-      {
-        /* <Route path="/" element={<HomePage />} />
-      <Route path="/formulario" element={<FormPage />} />
-      <Route path="/about" element={<About />} />
-      <Route path="/*" element={<NotFoundPage />} />
-      <Route path="/products" element={<Products />} />
-      <Route path="/pokemons" element={<Pokemon />} /> */
-        <Route path="/login" element={<Login />} />
-      }
+      <Route path="/" element={<Login />} />
+      <Route path="/home" element={<Home />} />
+      <Route path="/homeFuncionario" element={<HomeFuncionario />} />
     </Routes>
   );
 }

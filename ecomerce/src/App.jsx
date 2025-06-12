@@ -1,14 +1,12 @@
-import { Rotas } from "./Routes/routes/";
 import './App.css'
-import {ButtonAdicionar} from './components/components-carrinho/ButtonAdicionar'
+import { Rotas } from "./routes/routes";
 
 function App() {
 
 
   return (
     <>
-      <ButtonAdicionar />
-      <Rotas />;
+      <Rotas />
     </>
   )
 }
