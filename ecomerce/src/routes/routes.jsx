@@ -1,0 +1,20 @@
+import { Route, Routes } from "react-router-dom";
+// import { HomePage } from "../pages/homepage/home";
+// import { FormPage } from "../pages/form/form";
+// import { About } from "../pages/about/about";
+// import { NotFoundPage } from "../pages/notFound/not-found";
+// import { Products } from "../pages/products/products";
+// import { Pokemon } from "../pages/pokemon/pokemon";
+
+export function Rotas() {
+  return (
+    <Routes>
+      {/* <Route path="/" element={<HomePage />} />
+      <Route path="/formulario" element={<FormPage />} />
+      <Route path="/about" element={<About />} />
+      <Route path="/*" element={<NotFoundPage />} />
+      <Route path="/products" element={<Products />} />
+      <Route path="/pokemons" element={<Pokemon />} /> */}
+    </Routes>
+  );
+}
