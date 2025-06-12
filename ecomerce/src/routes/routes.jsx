@@ -6,6 +6,7 @@ import { Route, Routes } from "react-router-dom";
 // import { Products } from "../pages/products/products";
 // import { Pokemon } from "../pages/pokemon/pokemon";
 import { Login } from "../pages/login/login";
+import { CadastroCliente } from "../pages/cadastro-cliente/cadastro-cliente";
 
 export function Rotas() {
   return (
@@ -17,7 +18,10 @@ export function Rotas() {
       <Route path="/*" element={<NotFoundPage />} />
       <Route path="/products" element={<Products />} />
       <Route path="/pokemons" element={<Pokemon />} /> */
-        <Route path="/login" element={<Login />} />
+        <>
+          <Route path="/login" element={<Login />} />
+          <Route path="/cadastro-cliente" element={<CadastroCliente />} />
+        </>
       }
     </Routes>
   );
