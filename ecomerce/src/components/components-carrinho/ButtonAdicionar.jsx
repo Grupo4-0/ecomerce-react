@@ -38,10 +38,10 @@ export function ButtonAdicionar({ idProduto }) {
   };
 
   const removerProduto = async () => {
+    console.log("Token:", token);
     try {
-      await axios.post(
-        `http://localhost:8080/pedidos/excluir/item?idProduto=${idProduto}`,
-        {},
+      await axios.delete(
+        `http://localhost:8080/pedidos/excluir/item/${idProduto}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -50,6 +50,7 @@ export function ButtonAdicionar({ idProduto }) {
         }
       );
       alert("Produto removido do carrinho!!");
+      window.location.reload();
       return true;
     } catch (error) {
       alert("Erro ao remover produto no carrinho!");
