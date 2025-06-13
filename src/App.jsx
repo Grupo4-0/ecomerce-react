@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Rotas } from "./Routes/Routes";
+import { Rotas } from "./routes/routes";
 import "./App.css";
 
 function App() {
