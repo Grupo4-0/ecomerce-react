@@ -5,8 +5,6 @@ export function ButtonAumentar({ itemId }) {
   const token = localStorage.getItem("token");
 
   const aumentar = async () => {
-    console.log({ itemId });
-    console.log({ token });
     try {
       await axios.patch(
         `http://localhost:8080/pedidos/aumentar/${itemId}`, null, 

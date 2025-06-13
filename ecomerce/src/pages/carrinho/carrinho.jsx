@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { ButtonRemover } from "../../components/components-carrinho/ButtonRemover";
 import { ButtonAumentar } from "../../components/components-carrinho/ButtonAumentar";
+import { ButtonDiminuir } from "../../components/components-carrinho/ButtonDiminuir";
 
 export function Carrinho() {
   const navigate = useNavigate();
@@ -57,12 +58,14 @@ export function Carrinho() {
                   <p>Quantidade: {item.quantidade}</p>
                   <p>Total: R${item.precoTotal}</p>
                   <ButtonAumentar itemId={item.codigo} />
+                  <ButtonDiminuir itemId={item.codigo} />
                   <ButtonRemover idProduto={item.codigoProduto} />
                 </li>
               ))}
             </ul>
             <div id="dadosPedido">
-              <h3></h3>
+              <h3>Frete: R${pedidoAtual.valorFrete}</h3>
+              <h3>Total: R${pedidoAtual.precoTotal}</h3>
             </div>
           </div>
         ) : (
