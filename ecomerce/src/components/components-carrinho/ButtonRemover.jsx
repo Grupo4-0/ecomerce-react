@@ -5,7 +5,6 @@ export function ButtonRemover({ idProduto }) {
   const token = localStorage.getItem("token");
 
   const removerProduto = async () => {
-    console.log("Token:", token);
     try {
       await axios.delete(
         `http://localhost:8080/pedidos/excluir/item/${idProduto}`,
