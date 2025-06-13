@@ -1,8 +1,12 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import axios from "axios";
+import { Card } from "../../components/Card/card";
+import { Input } from "../../components/Input/input";
+import { Button } from "../../components/Button/button";
 import styles from "./cadastro-cliente.module.css";
 
 export function CadastroCliente() {
-  const [formData, setFormData] = useState({
+  const [dados, setDados] = useState({
     nome: "",
     cpf: "",
     dataDeNascimento: "",
@@ -13,343 +17,273 @@ export function CadastroCliente() {
     senha: "",
   });
 
-  const [errors, setErrors] = useState({});
-  const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState("");
-  const [messageType, setMessageType] = useState(""); // 'success' ou 'error'
+  const [confirmaSenha, setConfirmaSenha] = useState("");
 
-  // Função para aplicar máscara no CPF
-  const formatCPF = (value) => {
-    return value
-      .replace(/\D/g, "")
-      .replace(/(\d{3})(\d)/, "$1.$2")
-      .replace(/(\d{3})(\d)/, "$1.$2")
-      .replace(/(\d{3})(\d{1,2})/, "$1-$2")
-      .replace(/(-\d{2})\d+?$/, "$1");
+  // Função para formatar CPF
+  const formatarCPF = (valor) => {
+    const apenasNumeros = valor.replace(/\D/g, "");
+    const limitado = apenasNumeros.slice(0, 11);
+
+    if (limitado.length <= 3) {
+      return limitado;
+    } else if (limitado.length <= 6) {
+      return `${limitado.slice(0, 3)}.${limitado.slice(3)}`;
+    } else if (limitado.length <= 9) {
+      return `${limitado.slice(0, 3)}.${limitado.slice(3, 6)}.${limitado.slice(6)}`;
+    } else {
+      return `${limitado.slice(0, 3)}.${limitado.slice(3, 6)}.${limitado.slice(6, 9)}-${limitado.slice(9)}`;
+    }
   };
 
-  // Função para aplicar máscara no telefone
-  const formatTelefone = (value) => {
-    return value
-      .replace(/\D/g, "")
-      .replace(/(\d{2})(\d)/, "($1) $2")
-      .replace(/(\d{4})(\d)/, "$1-$2")
-      .replace(/(\d{4})-(\d)(\d{4})/, "$1$2-$3")
-      .replace(/(-\d{4})\d+?$/, "$1");
+  // Função para formatar Telefone
+  const formatarTelefone = (valor) => {
+    const apenasNumeros = valor.replace(/\D/g, "");
+    const limitado = apenasNumeros.slice(0, 11);
+
+    if (limitado.length <= 2) {
+      return limitado;
+    } else if (limitado.length <= 3) {
+      return `(${limitado.slice(0, 2)}) ${limitado.slice(2)}`;
+    } else if (limitado.length <= 7) {
+      return `(${limitado.slice(0, 2)}) ${limitado.slice(2, 3)}${limitado.slice(3)}`;
+    } else {
+      return `(${limitado.slice(0, 2)}) ${limitado.slice(2, 3)}${limitado.slice(3, 7)}-${limitado.slice(7)}`;
+    }
   };
 
-  // Função para aplicar máscara no CEP
-  const formatCEP = (value) => {
-    return value
-      .replace(/\D/g, "")
-      .replace(/(\d{5})(\d)/, "$1-$2")
-      .replace(/(-\d{3})\d+?$/, "$1");
+  // Função para formatar CEP
+  const formatarCEP = (valor) => {
+    const apenasNumeros = valor.replace(/\D/g, "");
+    const limitado = apenasNumeros.slice(0, 8);
+
+    if (limitado.length <= 5) {
+      return limitado;
+    } else {
+      return `${limitado.slice(0, 5)}-${limitado.slice(5)}`;
+    }
   };
 
-  // Validações do frontend
-  const validateForm = () => {
-    const newErrors = {};
+  const validarCampos = () => {
+    const erros = [];
 
-    if (!formData.nome.trim()) {
-      newErrors.nome = "Nome é obrigatório";
+    if (!dados.nome || dados.nome.trim() === "") {
+      erros.push("Nome é obrigatório.");
     }
 
-    const cpfRegex = /^\d{3}\.\d{3}\.\d{3}-\d{2}$/;
-    if (!cpfRegex.test(formData.cpf)) {
-      newErrors.cpf = "Formato inválido, esperado xxx.xxx.xxx-xx";
+    // Validação CPF atualizada
+    if (!dados.cpf || dados.cpf.trim() === "") {
+      erros.push("CPF é obrigatório.");
+    } else {
+      const apenasNumeros = dados.cpf.replace(/\D/g, "");
+
+      if (apenasNumeros.length !== 11) {
+        erros.push("CPF deve conter 11 dígitos.");
+      } else if (/^(\d)\1{10}$/.test(apenasNumeros)) {
+        erros.push("CPF inválido.");
+      } else {
+        const cpfRegex = /^\d{3}\.\d{3}\.\d{3}-\d{2}$/;
+        if (!cpfRegex.test(dados.cpf)) {
+          erros.push("Formato do CPF inválido, esperado xxx.xxx.xxx-xx.");
+        }
+      }
     }
 
-    if (!formData.dataDeNascimento) {
-      newErrors.dataDeNascimento = "A data de nascimento deve ser preenchido";
+    if (!dados.dataDeNascimento) {
+      erros.push("A data de nascimento deve ser preenchida.");
     }
 
-    const telefoneRegex = /^\(\d{2}\) ?9?\d{4}-\d{4}$/;
-    if (formData.telefone && !telefoneRegex.test(formData.telefone)) {
-      newErrors.telefone = "Telefone inválido, formato esperado: (XX) 9XXXX-XXXX";
+    // Validação Telefone atualizada
+    if (!dados.telefone || dados.telefone.trim() === "") {
+      erros.push("Telefone é obrigatório.");
+    } else {
+      const apenasNumeros = dados.telefone.replace(/\D/g, "");
+      const telefoneRegex = /^\(\d{2}\) \d{4,5}-\d{4}$/;
+      if (!telefoneRegex.test(dados.telefone)) {
+        erros.push("Telefone inválido, formato esperado: (XX) 9XXXX-XXXX");
+      }
     }
 
-    const cepRegex = /^\d{5}-\d{3}$/;
-    if (!cepRegex.test(formData.cep)) {
-      newErrors.cep = "CEP inválido, esperado: 99999-999";
+    // Validação CEP atualizada
+    if (!dados.cep || dados.cep.trim() === "") {
+      erros.push("CEP é obrigatório.");
+    } else {
+      const apenasNumeros = dados.cep.replace(/\D/g, "");
+
+      if (apenasNumeros.length !== 8) {
+        erros.push("CEP deve conter 8 dígitos.");
+      } else {
+        const cepRegex = /^\d{5}-\d{3}$/;
+        if (!cepRegex.test(dados.cep)) {
+          erros.push("Formato do CEP inválido.");
+        }
+      }
     }
 
     const numeroRegex = /^[1-9]\d*$|^s\/n$/i;
-    if (!numeroRegex.test(formData.numero)) {
-      newErrors.numero = "Número residencial deve ser um número positivo ou 'S/N'";
+    if (!dados.numero || !numeroRegex.test(dados.numero)) {
+      erros.push("Número residencial deve ser um número positivo ou 'S/N'");
     }
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(formData.email)) {
-      newErrors.email = "Email inválido";
+    if (!dados.email || !emailRegex.test(dados.email)) {
+      erros.push("Email inválido.");
     }
 
     const senhaRegex = /^(?=.*[A-Z])(?=.*[a-zA-Z])(?=.*\d)(?=.*[^a-zA-Z0-9]).{8,}$/;
-    if (!senhaRegex.test(formData.senha)) {
-      newErrors.senha =
-        "A senha deve ter no mínimo 8 caracteres, incluindo letra maiúscula, número e caractere especial.";
+    if (!dados.senha || !senhaRegex.test(dados.senha)) {
+      erros.push("A senha deve ter no mínimo 8 caracteres, incluindo letra maiúscula, número e caractere especial.");
     }
 
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
+    // Validação da confirmação de senha
+    if (dados.senha !== confirmaSenha) {
+      erros.push("As senhas não coincidem.");
+    }
+
+    return erros;
   };
 
-  // Manipular mudanças nos inputs
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    let formattedValue = value;
-
-    // Aplicar máscaras
-    if (name === "cpf") {
-      formattedValue = formatCPF(value);
-    } else if (name === "telefone") {
-      formattedValue = formatTelefone(value);
-    } else if (name === "cep") {
-      formattedValue = formatCEP(value);
-    }
-
-    setFormData((prev) => ({
-      ...prev,
-      [name]: formattedValue,
-    }));
-
-    // Limpar erro específico quando usuário começar a digitar
-    if (errors[name]) {
-      setErrors((prev) => ({
-        ...prev,
-        [name]: "",
-      }));
-    }
-  };
-
-  // Submeter formulário
   const handleSubmit = async (e) => {
     e.preventDefault();
+    // Executar todas as validações
+    const erros = validarCampos();
 
-    if (!validateForm()) {
+    if (erros.length > 0) {
+      alert("ERRO!!\n\n" + erros.join("\n"));
       return;
     }
 
-    setLoading(true);
-    setMessage("");
-    setMessageType("");
-
     try {
-      const response = await fetch("/cliente/cadastro", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
+      await axios.post("http://localhost:8080/cliente/cadastro", dados);
+      alert("Cliente cadastrado com sucesso!");
+
+      // Limpar formulário
+      setDados({
+        nome: "",
+        cpf: "",
+        dataDeNascimento: "",
+        telefone: "",
+        cep: "",
+        numero: "",
+        email: "",
+        senha: "",
       });
-
-      const data = await response.json();
-
-      if (response.ok) {
-        setMessage(data.mensagem);
-        setMessageType("success");
-
-        // Limpar formulário após sucesso
-        setFormData({
-          nome: "",
-          cpf: "",
-          dataDeNascimento: "",
-          telefone: "",
-          cep: "",
-          numero: "",
-          email: "",
-          senha: "",
-        });
-      } else {
-        if (data.mensagem) {
-          setMessage(data.mensagem);
-        } else if (data.message) {
-          setMessage(data.message);
-        } else {
-          setMessage("Erro ao cadastrar cliente. Tente novamente.");
-        }
-        setMessageType("error");
-      }
+      setConfirmaSenha("");
     } catch (error) {
-      setMessage("Erro ao cadastrar cliente. Tente novamente.");
-      setMessageType("error");
-    } finally {
-      setLoading(false);
+      console.error("Erro ao cadastrar cliente:", error);
+
+      // Se o backend retornar erros de validação
+      if (error.response?.data?.message) {
+        alert("Erro: " + error.response.data.message);
+      } else if (error.response?.data?.errors) {
+        const errosBackend = error.response.data.errors.map((err) => err.message || err);
+        alert("Erros do servidor:\n\n" + errosBackend.join("\n"));
+      } else {
+        alert("Erro ao cadastrar. Veja o console para mais detalhes.");
+      }
     }
   };
 
+  console.log("Dados válidos:", dados);
+
   return (
-    <div className={styles.cadastroClienteContainer}>
-      <div className={styles.cadastroClienteCard}>
-        <div className={styles.cadastroClienteHeader}>
-          <h2 className={styles.cadastroClienteTitulo}>Cadastro de Cliente</h2>
-          <p className={styles.cadastroClienteSubtitulo}>Preencha todos os campos para criar sua conta</p>
-        </div>
+    <>
+      <form className={styles.formCadastro} onSubmit={handleSubmit}>
+        {/* <Card onSubmit={handleSubmit}> */}
+        <label htmlFor="nomeInput">Nome</label>
+        <Input
+          type="text"
+          placeholder="Digite seu nome"
+          value={dados.nome}
+          onChange={(e) => setDados({ ...dados, nome: e.target.value })}
+          required
+        />
 
-        {message && (
-          <div
-            className={`${styles.cadastroClienteMensagem} ${
-              messageType === "success" ? styles.cadastroClienteMensagemSucesso : styles.cadastroClienteMensagemErro
-            }`}
-          >
-            {message}
-          </div>
-        )}
+        <label htmlFor="cpfInput">CPF</label>
+        <Input
+          type="text"
+          placeholder="XXX.XXX.XXX-XX"
+          value={dados.cpf}
+          onChange={(e) => {
+            const cpfFormatado = formatarCPF(e.target.value);
+            setDados({ ...dados, cpf: cpfFormatado });
+          }}
+          maxLength={14}
+          required
+        />
 
-        <div className={styles.cadastroClienteFormulario}>
-          {/* Nome */}
-          <div className={styles.cadastroClienteCampoGrupo}>
-            <label htmlFor="nome" className={styles.cadastroClienteLabel}>
-              Nome *
-            </label>
-            <input
-              type="text"
-              placeholder="Digite seu nome completo"
-              value={formData.nome}
-              onChange={handleInputChange}
-              className={`${styles.cadastroClienteInput} ${errors.nome ? styles.cadastroClienteInputErro : ""}`}
-            />
-            {errors.nome && <p className={styles.cadastroClienteErroTexto}>{errors.nome}</p>}
-          </div>
+        <label htmlFor="dataDeNascimentoInput">Data de Nascimento</label>
+        <Input
+          type="date"
+          placeholder="Digite sua data de nascimento"
+          value={dados.dataDeNascimento}
+          onChange={(e) => setDados({ ...dados, dataDeNascimento: e.target.value })}
+          max={new Date().toISOString().split("T")[0]}
+          required
+        />
 
-          {/* CPF */}
-          <div className={styles.cadastroClienteCampoGrupo}>
-            <label htmlFor="cpf" className={styles.cadastroClienteLabel}>
-              CPF *
-            </label>
-            <input
-              type="text"
-              placeholder="xxx.xxx.xxx-xx"
-              value={formData.cpf}
-              onChange={handleInputChange}
-              maxLength="14"
-              className={`${styles.cadastroClienteInput} ${errors.cpf ? styles.cadastroClienteInputErro : ""}`}
-            />
-            {errors.cpf && <p className={styles.cadastroClienteErroTexto}>{errors.cpf}</p>}
-          </div>
+        <label htmlFor="telefoneInput">Telefone</label>
+        <Input
+          type="text"
+          placeholder="(XX) 9XXXX-XXXX"
+          value={dados.telefone}
+          onChange={(e) => {
+            const telefoneFormatado = formatarTelefone(e.target.value);
+            setDados({ ...dados, telefone: telefoneFormatado });
+          }}
+          maxLength={15}
+          required
+        />
 
-          {/* Data de Nascimento */}
-          <div className={styles.cadastroClienteCampoGrupo}>
-            <label htmlFor="dataDeNascimento" className={styles.cadastroClienteLabel}>
-              Data de Nascimento *
-            </label>
-            <input
-              type="date"
-              id="dataDeNascimento"
-              name="dataDeNascimento"
-              value={formData.dataDeNascimento}
-              onChange={handleInputChange}
-              className={`${styles.cadastroClienteInput} ${
-                errors.dataDeNascimento ? styles.cadastroClienteInputErro : ""
-              }`}
-            />
-            {errors.dataDeNascimento && <p className={styles.cadastroClienteErroTexto}>{errors.dataDeNascimento}</p>}
-          </div>
+        <label htmlFor="cepInput">CEP</label>
+        <Input
+          type="text"
+          placeholder="CEP (código postal)"
+          value={dados.cep}
+          onChange={(e) => {
+            const cepFormatado = formatarCEP(e.target.value);
+            setDados({ ...dados, cep: cepFormatado });
+          }}
+          maxLength={9}
+          required
+        />
 
-          {/* Telefone */}
-          <div className={styles.cadastroClienteCampoGrupo}>
-            <label htmlFor="telefone" className={styles.cadastroClienteLabel}>
-              Telefone
-            </label>
-            <input
-              type="text"
-              id="telefone"
-              name="telefone"
-              value={formData.telefone}
-              onChange={handleInputChange}
-              maxLength="15"
-              className={`${styles.cadastroClienteInput} ${errors.telefone ? styles.cadastroClienteInputErro : ""}`}
-              placeholder="(11) 99999-9999"
-            />
-            {errors.telefone && <p className={styles.cadastroClienteErroTexto}>{errors.telefone}</p>}
-          </div>
+        <label htmlFor="numeroInput">Número Residencial</label>
+        <Input
+          type="text"
+          placeholder="Digite o número da sua residência"
+          value={dados.numero}
+          onChange={(e) => setDados({ ...dados, numero: e.target.value })}
+        />
 
-          {/* CEP */}
-          <div className={styles.cadastroClienteCampoGrupo}>
-            <label htmlFor="cep" className={styles.cadastroClienteLabel}>
-              CEP *
-            </label>
-            <input
-              type="text"
-              id="cep"
-              name="cep"
-              value={formData.cep}
-              onChange={handleInputChange}
-              maxLength="9"
-              className={`${styles.cadastroClienteInput} ${errors.cep ? styles.cadastroClienteInputErro : ""}`}
-              placeholder="00000-000"
-            />
-            {errors.cep && <p className={styles.cadastroClienteErroTexto}>{errors.cep}</p>}
-          </div>
+        <label htmlFor="emailInput">Email</label>
+        <Input
+          type="text"
+          placeholder="Digite seu email"
+          value={dados.email}
+          onChange={(e) => setDados({ ...dados, email: e.target.value })}
+          required
+        />
 
-          {/* Número */}
-          <div className={styles.cadastroClienteCampoGrupo}>
-            <label htmlFor="numero" className={styles.cadastroClienteLabel}>
-              Número *
-            </label>
-            <input
-              type="text"
-              id="numero"
-              name="numero"
-              value={formData.numero}
-              onChange={handleInputChange}
-              className={`${styles.cadastroClienteInput} ${errors.numero ? styles.cadastroClienteInputErro : ""}`}
-              placeholder="123 ou S/N"
-            />
-            {errors.numero && <p className={styles.cadastroClienteErroTexto}>{errors.numero}</p>}
-          </div>
+        <label htmlFor="senhaInput">Senha</label>
+        <Input
+          type="password"
+          placeholder="Digite sua senha"
+          value={dados.senha}
+          onChange={(e) => setDados({ ...dados, senha: e.target.value })}
+          required
+        />
 
-          {/* Email */}
-          <div className={styles.cadastroClienteCampoGrupo}>
-            <label htmlFor="email" className={styles.cadastroClienteLabel}>
-              Email *
-            </label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              value={formData.email}
-              onChange={handleInputChange}
-              className={`${styles.cadastroClienteInput} ${errors.email ? styles.cadastroClienteInputErro : ""}`}
-              placeholder="seu@email.com"
-            />
-            {errors.email && <p className={styles.cadastroClienteErroTexto}>{errors.email}</p>}
-          </div>
-
-          {/* Senha */}
-          <div className={styles.cadastroClienteCampoGrupo}>
-            <label htmlFor="senha" className={styles.cadastroClienteLabel}>
-              Senha *
-            </label>
-            <input
-              type="password"
-              id="senha"
-              name="senha"
-              value={formData.senha}
-              onChange={handleInputChange}
-              className={`${styles.cadastroClienteInput} ${errors.senha ? styles.cadastroClienteInputErro : ""}`}
-              placeholder="Mínimo 8 caracteres"
-            />
-            {errors.senha && <p className={styles.cadastroClienteErroTexto}>{errors.senha}</p>}
-            <p className={styles.cadastroClienteTextoAjuda}>
-              Deve conter: letra maiúscula, número e caractere especial
-            </p>
-          </div>
-
-          {/* Botão Submit */}
-          <div className={styles.cadastroClienteBotaoContainer}>
-            <button
-              type="submit"
-              onClick={handleSubmit}
-              disabled={loading}
-              className={`${styles.cadastroClienteBotaoSubmit} ${
-                loading ? styles.cadastroClienteBotaoSubmitDesabilitado : ""
-              }`}
-            >
-              {loading ? "Cadastrando..." : "Cadastrar Cliente"}
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
+        <label htmlFor="confirmaSenhaInput">Confirme sua Senha</label>
+        <Input
+          type="password"
+          placeholder="Digite sua senha novamente"
+          value={confirmaSenha}
+          onChange={(e) => setConfirmaSenha(e.target.value)}
+          required
+        />
+        <Button type="submit" title="Cadastrar-se" />
+        {/* </Card> */}
+      </form>
+    </>
   );
 }

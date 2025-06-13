@@ -20,7 +20,7 @@ export function Rotas() {
       <Route path="/pokemons" element={<Pokemon />} /> */
         <>
           <Route path="/login" element={<Login />} />
-          <Route path="/cadastro-cliente" element={<CadastroCliente />} />
+          <Route path="/cliente/cadastro" element={<CadastroCliente />} />
         </>
       }
     </Routes>
