@@ -90,7 +90,7 @@ export function Login() {
     if (validateForm()) {
       const isCliente = await login(); // agora você tem o valor retornado
       if (isCliente === true) {
-        navigate("/home");
+        navigate("/");
       } else if (isCliente === false) {
         navigate("/homeFuncionario");
       } else {
