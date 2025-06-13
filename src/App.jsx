@@ -1,7 +1,5 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
-import Rotas from "./Routes/Routes";
+import { Rotas } from "./Routes/Routes";
 import "./App.css";
 
 function App() {

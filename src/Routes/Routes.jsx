@@ -10,7 +10,7 @@ import { CadastroCliente } from "../pages/cadastro-cliente/cadastro-cliente";
 export function Rotas() {
   return (
     <Routes>
-      <Route path="/home" element={<Home />} />
+      <Route path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
       <Route path="/homeFuncionario" element={<HomeFuncionario />} />
       <Route path="/cadastro-produto" element={<CadastroProduto />} />
