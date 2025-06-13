@@ -6,6 +6,7 @@ import { Route, Routes } from "react-router-dom";
 // import {About} from "../Pages/About/About";
 import { CadastroFuncionario } from "../pages/cadastro-funcionario/cadastro-funcionario";
 // import { CadastroCliente } from "../pages/cadastro-cliente/cadastro-cliente";
+
 export function Rotas() {
   return (
     <Routes>
