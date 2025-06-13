@@ -1,28 +1,22 @@
 import { Route, Routes } from "react-router-dom";
-// import { HomePage } from "../pages/homepage/home";
-// import { FormPage } from "../pages/form/form";
-// import { About } from "../pages/about/about";
-// import { NotFoundPage } from "../pages/notFound/not-found";
-// import { Products } from "../pages/products/products";
-// import { Pokemon } from "../pages/pokemon/pokemon";
-import { Login } from "../pages/login/login";
-import CadastroFuncionario  from "../pages/cadastro-funcionario/cadastro-funcionario";
-
+// import { Login } from "../pages/login/login";
+// import { HomeFuncionario } from "../pages/homeFuncionario/homeFuncionario";
+// import { CadastroCategoria } from "../pages/homeFuncionario/cadastroCategoria";
+// import { CadastroProduto } from "../pages/homeFuncionario/cadastroProduto";
+// import {About} from "../Pages/About/About";
+import { CadastroFuncionario } from "../pages/cadastro-funcionario/cadastro-funcionario";
+// import { CadastroCliente } from "../pages/cadastro-cliente/cadastro-cliente";
 export function Rotas() {
   return (
     <Routes>
-      
-        {/* /* <Route path="/" element={<HomePage />} />
-      <Route path="/formulario" element={<FormPage />} />
-      <Route path="/about" element={<About />} />
-      <Route path="/*" element={<NotFoundPage />} />
-      <Route path="/products" element={<Products />} />
-      <Route path="/pokemons" element={<Pokemon />} /> */ }
-        <>
-          <Route path="/login" element={<Login />} />
-          <Route path="/CadastroFuncionario" element={<CadastroFuncionario />} />
-        </>
-      
+      {/* <Route path="/home" element={<Home />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/homeFuncionario" element={<HomeFuncionario />} />
+      <Route path="/cadastro-produto" element={<CadastroProduto />} />
+      <Route path="/cadastro-categoria" element={<CadastroCategoria />} />
+      <Route path="/sobre" element={<About />} /> */}
+      <Route path="/cadastroFuncionario" element={<CadastroFuncionario />} />
+      {/* <Route path="/cliente/cadastro" element={<CadastroCliente />} /> */}
     </Routes>
   );
 }

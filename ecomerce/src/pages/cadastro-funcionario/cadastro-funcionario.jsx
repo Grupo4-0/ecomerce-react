@@ -2,7 +2,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import styles from './cadastro-funcionario.module.css';
 
-export default function CadastroFuncionario() {
+export function CadastroFuncionario() {
   const [form, setForm] = useState({
     nome: '',
     cpf: '',
