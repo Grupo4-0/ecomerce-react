@@ -8,6 +8,8 @@ import { HomeFuncionario } from "../pages/homeFuncionario/homeFuncionario";
 import { Home } from '../pages/home/home';
 
 import { CadastroCliente } from "../pages/cadastro-cliente/cadastro-cliente";
+import { CadastroFuncionario } from "../pages/cadastro-funcionario/cadastro-funcionario";
+
 export function Rotas() {
   return (
     <Routes>
@@ -17,8 +19,8 @@ export function Rotas() {
       {/* <Route path="/cadastro-produto" element={<CadastroProduto />} />
       <Route path="/cadastro-categoria" element={<CadastroCategoria />} />
       <Route path="/sobre" element={<About />} /> */}
-      {/* <Route path="/cadastroFuncionario" element={<CadastroFuncionario />} />  */}
       <Route path="/cliente/cadastro" element={<CadastroCliente />} />
+      <Route path="/cadastroFuncionario" element={<CadastroFuncionario />} />
     </Routes>
   );
 }
