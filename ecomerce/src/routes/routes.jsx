@@ -6,19 +6,23 @@ import { Route, Routes } from "react-router-dom";
 // import { Products } from "../pages/products/products";
 // import { Pokemon } from "../pages/pokemon/pokemon";
 import { Login } from "../pages/login/login";
+import CadastroFuncionario  from "../pages/cadastro-funcionario/cadastro-funcionario";
 
 export function Rotas() {
   return (
     <Routes>
-      {
-        /* <Route path="/" element={<HomePage />} />
+      
+        {/* /* <Route path="/" element={<HomePage />} />
       <Route path="/formulario" element={<FormPage />} />
       <Route path="/about" element={<About />} />
       <Route path="/*" element={<NotFoundPage />} />
       <Route path="/products" element={<Products />} />
-      <Route path="/pokemons" element={<Pokemon />} /> */
-        <Route path="/login" element={<Login />} />
-      }
+      <Route path="/pokemons" element={<Pokemon />} /> */ }
+        <>
+          <Route path="/login" element={<Login />} />
+          <Route path="/CadastroFuncionario" element={<CadastroFuncionario />} />
+        </>
+      
     </Routes>
   );
 }

@@ -1,4 +1,4 @@
-import { Rotas } from "./Routes/routes";
+import { Rotas } from "./routes/routes";
 
 function App() {
   return <Rotas />;
