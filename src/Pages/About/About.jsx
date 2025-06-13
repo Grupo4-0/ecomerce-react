@@ -1,6 +1,6 @@
 import React from "react";
 import "../../App.css";
-import ProfileFlipCard from "../../Pages/ProfileFlip/ProfileFlipCard";
+import ProfileFlipCard from "../ProfileFlip/ProfileFlipCard";
 import imgMaria from "../../assets/MariaAraguao.png";
 import imgJose from "../../assets/JoseNetto.png";
 import imgLivia from "../../assets/Livia.png";
@@ -10,7 +10,7 @@ import imgPaulo from "../../assets/PauloRicardo.png";
 
 function About() {
   return (
-    <div className="edu-font">
+    <div className="poppins-thin ">
       <h1 style={{ textAlign: "center", marginTop: "20px" }}>Sobre a Equipe</h1>
       <div className="grid-container">
         <ProfileFlipCard
