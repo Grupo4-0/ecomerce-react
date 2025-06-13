@@ -44,47 +44,58 @@ export function Login() {
     return true;
   };
 
+  const login = async () => {
+    setLoading(true);
+    try {
+      const response = await axios.post(
+        `http://localhost:8080/login?email=${formUsuario.email}&senha=${formUsuario.password}`,
+        {}
+      );
+      const token = response.data;
+      localStorage.setItem("token", token);
+      alert("Login efetuado com sucesso!");
+
+      const isCliente = await cliente(token); // agora espera a verificação
+      return isCliente;
+    } catch (err) {
+      console.error("Erro no login:", err);
+      setError("Erro ao efetuar login!");
+      return null;
+    } finally {
+      setLoading(false);
+    }
+  };
+
   async function cliente(token) {
     try {
       const response = await axios.get(
         `http://localhost:8080/login/ehCliente?token=${token}`,
         {
           headers: {
-            'Access-Control-Allow-Origin': '*',
+            "Access-Control-Allow-Origin": "*",
             "Content-Type": "application/json",
           },
         }
       );
-      setEhCliente(response.data);
-      console.error("Chegou", response.data);
+      console.log("Chegou", response.data);
+      return response.data;
     } catch (error) {
       console.error("Erro ao verificar se é cliente:", error);
+      return null;
     }
   }
-
-  const login = async () => {
-    setLoading(true);
-    try {
-      const response = await axios.post(
-        `http://localhost:8080/login?email=${formUsuario.email}&senha=${formUsuario.password}`, {}
-      );
-      const token = response.data;
-      cliente(token);
-      localStorage.setItem("token", token);
-      alert("Login efetuado com sucesso!");
-    } catch (err) {
-      console.error("Erro no login:", err);
-      setError("Erro ao efetuar login!");
-    } finally {
-      setLoading(false);
-    }
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (validateForm()) {
-      await login();
-      ehCliente ? navigate("/home") : navigate("/homeFuncionario");
+      const isCliente = await login(); // agora você tem o valor retornado
+      if (isCliente === true) {
+        navigate("/home");
+      } else if (isCliente === false) {
+        navigate("/homeFuncionario");
+      } else {
+        alert("Erro no redirecionamento!");
+      }
     }
   };
 
