@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Rotas } from "./routes/routes";
-import Navbar from "./components/Navbar";
+import Navbar from "../src/pages/NavbarAbout/navbarAbout";
 import "./App.css";
 
 function App() {
