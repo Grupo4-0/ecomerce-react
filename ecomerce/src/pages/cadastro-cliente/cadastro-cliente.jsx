@@ -4,6 +4,7 @@ import { Card } from "../../components/Card/card";
 import { Input } from "../../components/Input/input";
 import { Button } from "../../components/Button/button";
 import styles from "./cadastro-cliente.module.css";
+import Image from "../../assets/foto-gato.jpg";
 
 export function CadastroCliente() {
   const [dados, setDados] = useState({
@@ -184,106 +185,124 @@ export function CadastroCliente() {
   };
 
   console.log("Dados válidos:", dados);
+  // const navigate = useNavigate();
 
   return (
     <>
-      <form className={styles.formCadastro} onSubmit={handleSubmit}>
-        {/* <Card onSubmit={handleSubmit}> */}
-        <label htmlFor="nomeInput">Nome</label>
-        <Input
-          type="text"
-          placeholder="Digite seu nome"
-          value={dados.nome}
-          onChange={(e) => setDados({ ...dados, nome: e.target.value })}
-          required
-        />
+      <div className={styles.container}>
+        <div className={styles.divEsquerda}>
+          <img src={Image} alt="FOTO DO GATO" />
+        </div>
+        <div className={styles.divDireita}>
+          <h1>Cadastro</h1>
+          <nav className={styles.navbar}>
+            <ul className={styles.navItens}>
+              <li onClick={() => navigate("/")}>HOME</li>
+              <li onClick={() => navigate("/sobre")}>SOBRE</li>
+              <li onClick={() => navigate("/login")}>LOGIN</li>
+            </ul>
+          </nav>
+          <form className={styles.formCadastro} onSubmit={handleSubmit}>
+            {/* <Card onSubmit={handleSubmit}> */}
+            <label className={styles.labelCadastro} htmlFor="nomeInput">
+              Nome
+            </label>
+            <Input
+              type="text"
+              placeholder="Digite seu nome"
+              value={dados.nome}
+              onChange={(e) => setDados({ ...dados, nome: e.target.value })}
+              required
+            />
 
-        <label htmlFor="cpfInput">CPF</label>
-        <Input
-          type="text"
-          placeholder="XXX.XXX.XXX-XX"
-          value={dados.cpf}
-          onChange={(e) => {
-            const cpfFormatado = formatarCPF(e.target.value);
-            setDados({ ...dados, cpf: cpfFormatado });
-          }}
-          maxLength={14}
-          required
-        />
+            <label htmlFor="cpfInput">CPF</label>
+            <Input
+              type="text"
+              placeholder="XXX.XXX.XXX-XX"
+              value={dados.cpf}
+              onChange={(e) => {
+                const cpfFormatado = formatarCPF(e.target.value);
+                setDados({ ...dados, cpf: cpfFormatado });
+              }}
+              maxLength={14}
+              required
+            />
 
-        <label htmlFor="dataDeNascimentoInput">Data de Nascimento</label>
-        <Input
-          type="date"
-          placeholder="Digite sua data de nascimento"
-          value={dados.dataDeNascimento}
-          onChange={(e) => setDados({ ...dados, dataDeNascimento: e.target.value })}
-          max={new Date().toISOString().split("T")[0]}
-          required
-        />
+            <label htmlFor="dataDeNascimentoInput">Data de Nascimento</label>
+            <Input
+              type="date"
+              placeholder="Digite sua data de nascimento"
+              value={dados.dataDeNascimento}
+              onChange={(e) => setDados({ ...dados, dataDeNascimento: e.target.value })}
+              max={new Date().toISOString().split("T")[0]}
+              required
+            />
 
-        <label htmlFor="telefoneInput">Telefone</label>
-        <Input
-          type="text"
-          placeholder="(XX) 9XXXX-XXXX"
-          value={dados.telefone}
-          onChange={(e) => {
-            const telefoneFormatado = formatarTelefone(e.target.value);
-            setDados({ ...dados, telefone: telefoneFormatado });
-          }}
-          maxLength={15}
-          required
-        />
+            <label htmlFor="telefoneInput">Telefone</label>
+            <Input
+              type="text"
+              placeholder="(XX) 9XXXX-XXXX"
+              value={dados.telefone}
+              onChange={(e) => {
+                const telefoneFormatado = formatarTelefone(e.target.value);
+                setDados({ ...dados, telefone: telefoneFormatado });
+              }}
+              maxLength={15}
+              required
+            />
 
-        <label htmlFor="cepInput">CEP</label>
-        <Input
-          type="text"
-          placeholder="CEP (código postal)"
-          value={dados.cep}
-          onChange={(e) => {
-            const cepFormatado = formatarCEP(e.target.value);
-            setDados({ ...dados, cep: cepFormatado });
-          }}
-          maxLength={9}
-          required
-        />
+            <label htmlFor="cepInput">CEP</label>
+            <Input
+              type="text"
+              placeholder="CEP (código postal)"
+              value={dados.cep}
+              onChange={(e) => {
+                const cepFormatado = formatarCEP(e.target.value);
+                setDados({ ...dados, cep: cepFormatado });
+              }}
+              maxLength={9}
+              required
+            />
 
-        <label htmlFor="numeroInput">Número Residencial</label>
-        <Input
-          type="text"
-          placeholder="Digite o número da sua residência"
-          value={dados.numero}
-          onChange={(e) => setDados({ ...dados, numero: e.target.value })}
-        />
+            <label htmlFor="numeroInput">Número Residencial</label>
+            <Input
+              type="text"
+              placeholder="Digite o número da sua residência"
+              value={dados.numero}
+              onChange={(e) => setDados({ ...dados, numero: e.target.value })}
+            />
 
-        <label htmlFor="emailInput">Email</label>
-        <Input
-          type="text"
-          placeholder="Digite seu email"
-          value={dados.email}
-          onChange={(e) => setDados({ ...dados, email: e.target.value })}
-          required
-        />
+            <label htmlFor="emailInput">Email</label>
+            <Input
+              type="text"
+              placeholder="Digite seu email"
+              value={dados.email}
+              onChange={(e) => setDados({ ...dados, email: e.target.value })}
+              required
+            />
 
-        <label htmlFor="senhaInput">Senha</label>
-        <Input
-          type="password"
-          placeholder="Digite sua senha"
-          value={dados.senha}
-          onChange={(e) => setDados({ ...dados, senha: e.target.value })}
-          required
-        />
+            <label htmlFor="senhaInput">Senha</label>
+            <Input
+              type="password"
+              placeholder="Digite sua senha"
+              value={dados.senha}
+              onChange={(e) => setDados({ ...dados, senha: e.target.value })}
+              required
+            />
 
-        <label htmlFor="confirmaSenhaInput">Confirme sua Senha</label>
-        <Input
-          type="password"
-          placeholder="Digite sua senha novamente"
-          value={confirmaSenha}
-          onChange={(e) => setConfirmaSenha(e.target.value)}
-          required
-        />
-        <Button type="submit" title="Cadastrar-se" />
-        {/* </Card> */}
-      </form>
+            <label htmlFor="confirmaSenhaInput">Confirme sua Senha</label>
+            <Input
+              type="password"
+              placeholder="Digite sua senha novamente"
+              value={confirmaSenha}
+              onChange={(e) => setConfirmaSenha(e.target.value)}
+              required
+            />
+            <Button type="submit" title="Cadastrar-se" />
+            {/* </Card> */}
+          </form>
+        </div>
+      </div>
     </>
   );
 }
