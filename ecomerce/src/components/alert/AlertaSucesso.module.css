@@ -1,0 +1,41 @@
+.alerta {
+  background-color: #fff5f8;
+  border: 2px solid #f7a7bb;
+  border-radius: 20px;
+  padding: 20px;
+  max-width: 500px;
+  margin: 20px auto;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  font-family: 'Poppins', sans-serif;
+  animation: aparecer 0.6s ease forwards;
+}
+
+.emoji {
+  font-size: 2.2rem;
+}
+
+.texto h3 {
+  color: #f1396d;
+  font-size: 1.3rem;
+  margin: 0;
+}
+
+.texto p {
+  color: #333;
+  font-size: 1rem;
+  margin: 4px 0 0 0;
+}
+
+@keyframes aparecer {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

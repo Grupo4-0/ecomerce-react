@@ -5,6 +5,7 @@ import { ButtonRemover } from "../../components/components-carrinho/ButtonRemove
 import { ButtonAumentar } from "../../components/components-carrinho/ButtonAumentar";
 import { ButtonDiminuir } from "../../components/components-carrinho/ButtonDiminuir";
 import { ButtonFinalizarCompra } from "../../components/components-carrinho/ButtonFinalizarCompra";
+import style from './carrinho.module.css';
 
 export function Carrinho() {
   const navigate = useNavigate();
@@ -37,7 +38,6 @@ export function Carrinho() {
         setItens(pedido.itens || []);
       } catch (error) {
         console.error("Erro ao buscar pedido:", error);
-        alert("Erro ao buscar pedido!");
       }
     };
 
@@ -46,6 +46,24 @@ export function Carrinho() {
 
   return (
     <div id="principal">
+      <header className={style.header}>
+        <nav className={style.nav}>
+          <ul className={style.navEsquerda}>
+            <li className={style.comum}>
+              <a href="/">Início</a>
+            </li>
+            <li className={style.comum}>
+              <a href="/sobre">Sobre</a>
+            </li>
+          </ul>
+          <ul className={style.navDireita}>
+            <li className={style.cadastro}>
+              <a href="/cliente/cadastro">Cadastre-se</a>
+            </li>
+          </ul>
+        </nav>
+      </header>
+
       <h1>Carrinho</h1>
       <div id="pedidoAtual">
         {pedidoAtual ? (
