@@ -18,6 +18,8 @@
 }
 
 body {
+  align-items: center;
+  justify-content: center;
   background-color: #FFE5EB;
   font-family: 'Poppins', sans-serif;
 }
@@ -189,7 +191,7 @@ body {
 
 nav ul li a {
   text-decoration: none;
-  color: var(--cor-titulo);
+  color: var(--cor-secundaria);
   font-weight: 500;
   font-size: 1rem;
   padding: 8px 16px;
@@ -198,13 +200,13 @@ nav ul li a {
 }
 
 .comum a:hover {
-  background-color: var(--cor-primaria);
-  color: var(--cor-clara);
+  background-color: var(--subcor-primaria);
+  color: var(--cor-titulo);
 }
 
 .cadastro a {
-  background-color: var(--cor-primaria);
-  color: var(--cor-clara);
+  border-color: var(--cor-primaria);
+  color: var(--cor-primaria);
   font-weight: 600;
   border: 2px solid transparent;
 }
