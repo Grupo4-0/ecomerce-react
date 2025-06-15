@@ -44,8 +44,8 @@ function About() {
         <ProfileFlipCard
           image={imgThais}
           name="Thais Costa"
-          quote="Mensagem Inspiradora "
-          description=" Sua descrição "
+          quote="Não é só sobre programar. É sobre resolver problemas, aprender todos os dias e nunca parar de evoluir."
+          description=" Tenho 22 anos, sou estudante de Software e apaixonada por tecnologia. Acredito que a programação é uma ferramenta poderosa para transformar o mundo."
           githubLink="https://github.com/tatacost"
         />
         <ProfileFlipCard
