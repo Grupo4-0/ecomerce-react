@@ -4,6 +4,7 @@ import axios from "axios";
 import { ButtonRemover } from "../../components/components-carrinho/ButtonRemover";
 import { ButtonAumentar } from "../../components/components-carrinho/ButtonAumentar";
 import { ButtonDiminuir } from "../../components/components-carrinho/ButtonDiminuir";
+import { ButtonFinalizarCompra } from "../../components/components-carrinho/ButtonFinalizarCompra";
 
 export function Carrinho() {
   const navigate = useNavigate();
@@ -49,27 +50,37 @@ export function Carrinho() {
       <div id="pedidoAtual">
         {pedidoAtual ? (
           <div>
-            <h2>Pedido #{pedidoAtual.codigo}</h2>
-            <ul>
-              {itens.map((item) => (
-                <li key={item.codigo}>
-                  <p>{item.nome}</p>
-                  <p>Preço: R${item.precoUnitario}</p>
-                  <p>Quantidade: {item.quantidade}</p>
-                  <p>Total: R${item.precoTotal}</p>
-                  <ButtonAumentar itemId={item.codigo} />
-                  <ButtonDiminuir itemId={item.codigo} />
-                  <ButtonRemover idProduto={item.codigoProduto} />
-                </li>
-              ))}
-            </ul>
             <div id="dadosPedido">
+              <h2>Pedido #{pedidoAtual.codigo}</h2>
+              <ul>
+                {itens.map((item) => (
+                  <li key={item.codigo}>
+                    <p>{item.nome}</p>
+                    <p>Preço: R${item.precoUnitario}</p>
+                    <p>Quantidade: {item.quantidade}</p>
+                    <p>Total: R${item.precoTotal}</p>
+                    <ButtonAumentar itemId={item.codigo} />
+                    <ButtonDiminuir itemId={item.codigo} />
+                    <ButtonRemover idProduto={item.codigoProduto} />
+                  </li>
+                ))}
+              </ul>
               <h3>Frete: R${pedidoAtual.valorFrete}</h3>
               <h3>Total: R${pedidoAtual.precoTotal}</h3>
             </div>
+            <ButtonFinalizarCompra />
           </div>
         ) : (
-          <p>Carregando pedido...</p>
+          <div id="carrinhoVazio">
+            <h2>🐾 Nada por aqui ainda...</h2>
+            <p>Seu melhor amigo tá esperando por aquele agrado especial! 💖</p>
+
+            <img
+              src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExdGoyZGpmb3Zzenk0MzhwNGJqZWY2amthNjFmaTRocXNyNmpydjR6ZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/kTHH8wDg1Cmcw/giphy.gif"
+              alt="Gif fofo de carrinho vazio"
+              width="200"
+            />
+          </div>
         )}
       </div>
     </div>
