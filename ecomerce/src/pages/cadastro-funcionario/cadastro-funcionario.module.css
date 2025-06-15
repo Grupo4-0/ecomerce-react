@@ -1,44 +1,144 @@
-/* cadastro-funcionario.module.css */
-.container {
-  max-width: 500px;
-  margin: 0 auto;
-  padding: 20px;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  background-color: #835f5f;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+ html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-image: url('../../assets/imagempata.avif');
 }
 
-.title {
-  text-align: center;
-  font-size: 24px;
-  margin-bottom: 20px;
+
+.pagina {
+  display: flex;
+  width: 1200px;
+  font-family: 'Poppins', sans-serif;
+
+  background-color: #ffe4ee;
 }
 
-.inputGroup {
-  margin-bottom: 15px;
+.painelEsquerdo {
+  width: 35%;
+  background: linear-gradient(to bottom, #34552b, #648057);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 30px 0 0 30px;
 }
 
-.inputGroup label {
-  display: block;
-  margin-bottom: 5px;
+
+.imagemGato {
+  width: 100%;
+  height: 100%;
+  border-radius: 24px;
+
+}
+
+
+.painelDireito{
+  flex: 1;
+  padding: 40px;
+  background-color: white;
+  border-radius: 0 30px 30px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  position: relative;
+  overflow: hidden;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.titulo{
+  font-weight: bold;
+  color: #ec2c7c;
+  font-size: 35px;
+}
+
+.navItem {
+  margin: 0 10px;
+  color: #a0a000;
+  cursor: pointer;
   font-weight: bold;
 }
 
-.inputGroup input,
-.inputGroup select {
-  width: 100%;
-  padding: 8px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-}
-
-.button {
-  width: 100%;
-  padding: 10px;
-  background-color: #4c00ff;
-  border: none;
-  color: white;
-  font-size: 16px;
-  border-radius: 5px;
+.navItemLogin {
+  margin: 0 10px;
+  color: #ec2c7c;
+  font-weight: bold;
   cursor: pointer;
 }
+
+.form {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.formNome{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 8px;
+}
+
+input, select {
+  background-color: #e0dbdb;
+  border: 1px solid #bdb5ff;
+  border-radius: 10px;
+  padding: 8px;
+  margin-top: 1px;
+  color: #000000
+}
+
+
+.password {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.ButtonEnviar {
+  background-color: #ec2c7c;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 15px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.bottomLink{
+  text-align: center;
+  margin-top: 20px; 
+  color: #a0a000;
+}
+
+.label {
+  color: #000000;
+  font-weight: 500;
+  margin-bottom: 1px;
+}
+
+@media (min-width: 768px) {
+  .painelEsquerdo {
+    width: 35%;
+    border-radius: 30px 0 0 30px;
+  }
+
+  .painelDireito {
+    width: 65%;
+    border-radius: 0 30px 30px 0;
+  }
+}
+
+.labelGenero {
+  color: #000000;
+  font-weight: 500;
+  margin-bottom: 1px;
+}
+
