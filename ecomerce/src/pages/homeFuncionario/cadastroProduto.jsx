@@ -70,7 +70,7 @@ export function CadastroProduto() {
                 },
             });
             alert("Produto cadastrado com sucesso!");
-            navigate("/homeFuncionario");
+            navigate("/funcionarioHome");
         } catch (error) {
             setError("Erro ao cadastrar produto. Verifique se todos os campos estão preenchidos corretamente.");
         } finally {

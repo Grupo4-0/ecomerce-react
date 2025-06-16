@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import styles from "./homeF.module.css"
 
-export function HomeFuncionario() {
+export function FuncionarioHome() {
     const navigate = useNavigate()
     //add botao para mandar para a home principal
     return (

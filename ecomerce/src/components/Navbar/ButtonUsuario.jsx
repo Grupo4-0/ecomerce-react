@@ -42,7 +42,7 @@ export function ButtonUsuario() {
     if (ehCliente === true) {
       navigate("/");
     } else if (ehCliente === false) {
-      navigate("/homeFuncionario");
+      navigate("/funcionarioHome");
     } else {
       alert("Erro ao redirecionar usuário.");
     }
