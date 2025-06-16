@@ -1,6 +1,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import styles from "./cadastroProduto.module.css"
+import fofinho from "../../assets/fofinho.jpg"
 
 export function CadastroProduto() {
     const navigate = useNavigate();
@@ -70,7 +72,7 @@ export function CadastroProduto() {
                 },
             });
             alert("Produto cadastrado com sucesso!");
-            navigate("/homeFuncionario");
+            navigate("/funcionarioHome");
         } catch (error) {
             setError("Erro ao cadastrar produto. Verifique se todos os campos estão preenchidos corretamente.");
         } finally {
@@ -79,108 +81,119 @@ export function CadastroProduto() {
     };
 
     return (
-        <div>
-            <h2>Cadastrar Produto</h2>
-            <form onSubmit={handleSubmit} encType="multipart/form-data">
-                <div>
-                    <label>Nome</label>
-                    <input
-                        type="text"
-                        className="form-control"
-                        value={produto.nome}
-                        onChange={(e) => setProduto({ ...produto, nome: e.target.value })}
-                        required
-                    />
+        <div className={styles.principal}>
+            <div className={styles.painelEsquerdo}>
+                <div className={styles.header}>
+                    <button onClick={() => navigate(-1)} className={styles.voltar}>
+                        &larr; Voltar </button>
                 </div>
+                <div className={styles.dados}>
+                    <h2 className={styles.titulo}>Cadastro de Produto</h2>
+                    <form onSubmit={handleSubmit} className={styles.formCadastro} encType="multipart/form-data">
+                        <div>
+                            <label>Nome:</label>
+                            <input
+                                type="text"
+                                className={styles.inputProduto}
+                                value={produto.nome}
+                                onChange={(e) => setProduto({ ...produto, nome: e.target.value })}
+                                required
+                            />
+                        </div>
 
-                <div>
-                    <label>Descrição</label>
-                    <textarea
-                        className="form-control"
-                        value={produto.descricao}
-                        onChange={(e) => setProduto({ ...produto, descricao: e.target.value })}
-                    />
-                </div>
+                        <div>
+                            <label>Descrição</label>
+                            <textarea
+                                className={styles.inputProduto}
+                                value={produto.descricao}
+                                onChange={(e) => setProduto({ ...produto, descricao: e.target.value })}
+                            />
+                        </div>
 
-                <div>
-                    <label>Categoria</label>
-                    <select
-                        className="form-select"
-                        value={produto.idCategoria}
-                        onChange={(e) => setProduto({ ...produto, idCategoria: e.target.value })} >
-                        <option value="">Selecione uma categoria</option>
-                        {categorias.map((cat) => (
-                            <option key={cat.id} value={cat.id}>
-                                {cat.nome}
-                            </option>
-                        ))}
-                    </select>
-                </div>
-                <div>
-                    {/* add R$ no meu campo input mas nao mandar R$ pro meu banco, trocar p text... */}
-                    <label>Preço</label>
-                    <span className="input-group-text">R$</span>
-                    <input
-                        type="number"
-                        step="0.01"
-                        className=""
-                        value={produto.preco}
-                        onChange={(e) => setProduto({ ...produto, preco: e.target.value })}
-                        required
-                        min="0" />
-                </div>
-                <div>
-                    {/* nao obrigatorio */}
-                    <label>Preço Promocional</label>
-                    <input
-                        type="number"
-                        step="0.01"
-                        className=""
-                        value={produto.precoPromocional}
-                        onChange={(e) => setProduto({ ...produto, precoPromocional: e.target.value })}
-                        min="0"
-                    />
-                </div>
+                        <div>
+                            <label>Categoria</label>
+                            <select
+                                className={styles.inputProduto}
+                                value={produto.idCategoria}
+                                onChange={(e) => setProduto({ ...produto, idCategoria: e.target.value })} >
+                                <option value="">Selecione uma categoria</option>
+                                {categorias.map((cat) => (
+                                    <option key={cat.id} value={cat.id}>
+                                        {cat.nome}
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
+                        <div>
+                            <label>Preço</label>
+                            <input
+                                type="number"
+                                step="0.01"
+                                className={styles.inputProduto}
+                                value={produto.preco}
+                                onChange={(e) => setProduto({ ...produto, preco: e.target.value })}
+                                required
+                                min="0" />
+                        </div>
+                        <div>
+                            {/* nao obrigatorio */}
+                            <label>Preço Promocional</label>
+                            <input
+                                type="number"
+                                step="0.01"
+                                className={styles.inputProduto}
+                                value={produto.precoPromocional}
+                                onChange={(e) => setProduto({ ...produto, precoPromocional: e.target.value })}
+                                min="0"
+                            />
+                        </div>
 
-                <div>
-                    <label>Estoque</label>
-                    <input
-                        type="number"
-                        className=""
-                        value={produto.estoque}
-                        onChange={(e) => setProduto({ ...produto, estoque: e.target.value })}
-                        required
-                        min="0"
-                    />
-                </div>
+                        <div>
+                            <label>Estoque</label>
+                            <input
+                                type="number"
+                                className={styles.inputProduto}
+                                value={produto.estoque}
+                                onChange={(e) => setProduto({ ...produto, estoque: e.target.value })}
+                                required
+                                min="0"
+                            />
+                        </div>
 
-                <div>
-                    <label>Fabricante</label>
-                    <input
-                        type="text"
-                        className=""
-                        value={produto.fabricante}
-                        onChange={(e) => setProduto({ ...produto, fabricante: e.target.value })}
-                        required
-                    />
-                </div>
+                        <div>
+                            <label>Fabricante</label>
+                            <input
+                                type="text"
+                                className={styles.inputProduto}
+                                value={produto.fabricante}
+                                onChange={(e) => setProduto({ ...produto, fabricante: e.target.value })}
+                                required
+                            />
+                        </div>
 
-                <div>
-                    <label>Foto do Produto</label>
-                    <input
-                        type="file"
-                        className="foto-produto"
-                        accept="image/*"
-                        required
-                        onChange={(e) => setProduto({ ...produto, foto: e.target.files[0] })}
-                    />
-                </div>
+                        <div>
+                            <label>Foto do Produto</label>
+                            <input
+                                type="file"
+                                className={styles.inputProduto}
+                                accept="image/*"
+                                required
+                                onChange={(e) => setProduto({ ...produto, foto: e.target.files[0] })}
+                            />
+                        </div>
 
-                <button type="submit" disabled={loading}>
-                    {loading ? "Cadastrando..." : "Cadastrar"}
-                </button>
-                {error && <p style={{ color: "red", marginTop: "1rem" }}>{error}</p>}
-            </form>
+                        <button type="submit" className={styles.botaoEnviar} disabled={loading}>
+                            {loading ? "Cadastrando..." : "Cadastrar"}
+                        </button>
+                        {error && <p style={{ color: "red", marginTop: "1rem" }}>{error}</p>}
+                    </form>
+                </div>
+            </div>
+
+            <div className={styles.painelDireito}>
+                <h1 className={styles.tituloImagem}>Wardiere</h1>
+                <img src={fofinho} className={styles.imagem} alt="Identidade visual do site que é um gato deitado na grama" />
+            </div>
         </div>
     );
 }
