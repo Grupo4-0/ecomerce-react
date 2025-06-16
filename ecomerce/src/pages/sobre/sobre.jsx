@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "../../pages/sobre/sobre.css";
+import "../../pages/sobre/sobre.module.css";
 import ProfileFlipCard from "../../components/ProfileFlipCard/ProfileFlipCard";
 import imgMaria from "../../assets/MariaAraguao.png";
 import imgJose from "../../assets/JoseNetto.png";
@@ -16,8 +16,8 @@ function Sobre() {
         <ProfileFlipCard
           image={imgMaria}
           name="Maria Araguão"
-          quote="Você não precisa saber tudo. Só precisa continuar aprendendo um pouco a cada dia."
-          description=" Sua descrição "
+          quote="Eu não falhei. Apenas descobri 10.000 maneiras que não funcionam."
+          description=" Tenh"
           githubLink="https://github.com/Maria-S-Aragao"
         />
         <ProfileFlipCard
