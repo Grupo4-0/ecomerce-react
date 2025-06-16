@@ -38,11 +38,7 @@ export function CadastroCategoria() {
     }
 
     // Verifica se a categoria já existe
-    if (
-      categoriasExistentes.some(
-        (c) => c.nome.toLowerCase() === nome.trim().toLowerCase()
-      )
-    ) {
+    if (categoriasExistentes.some((c) => c.nome.toLowerCase() === nome.trim().toLowerCase())) {
       setError("Categoria já existente.");
       return;
     }
@@ -74,15 +70,11 @@ export function CadastroCategoria() {
       setCategoriasExistentes([...categoriasExistentes, { nome }]);
       setNome("");
       navigate("/funcionarioHome");
-
     } catch (err) {
       console.error("Erro ao cadastrar categoria:", err);
       if (err.response?.status === 400 || err.response?.status === 409) {
         setError("Categoria já existe ou dados inválidos.");
-      } else if (
-        err.response?.status === 401 ||
-        err.response?.status === 403
-      ) {
+      } else if (err.response?.status === 401 || err.response?.status === 403) {
         setError("Acesso negado. Faça login novamente.");
       } else {
         setError("Erro inesperado :( Por favor, tente novamente!");
