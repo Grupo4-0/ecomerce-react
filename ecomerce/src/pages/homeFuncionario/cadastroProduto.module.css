@@ -38,7 +38,7 @@ body {
 
 .principal {
     width: 1000px;
-    height: 535px;
+    height: auto;
     background-color: #FDFDFD;
     display: flex;
     flex-direction: row;

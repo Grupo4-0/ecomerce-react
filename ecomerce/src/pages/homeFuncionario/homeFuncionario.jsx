@@ -3,7 +3,7 @@ import styles from "./homeF.module.css"
 
 export function HomeFuncionario() {
     const navigate = useNavigate()
-    //add botao para mandar para a home principal
+    //add botao para mandar para a home principal atraves do login
     return (
         <div className={styles.conteudo}>
             <button onClick={() => navigate(-1)} className={styles.voltar}>

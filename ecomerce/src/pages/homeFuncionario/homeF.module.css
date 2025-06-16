@@ -17,9 +17,9 @@
 .conteudo {
   min-width: 100vh;
   max-width: fit-content;
-  padding: 90px;
+  padding: 80px;
   border: 2px solid #F1396D;
-  border-radius: 35px;
+  border-radius: 45px;
   background-color: #FD6081;
   box-shadow: 0px 4px 12px;
   text-align: center;
