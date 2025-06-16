@@ -29,10 +29,9 @@ export function ButtonAdicionar({ idProduto }) {
           },
         }
       );
-      alert("Produto adicionado ao carrinho com sucesso!");
       return true;
     } catch (error) {
-      alert("Erro ao adicionar produto no carrinho!");
+      alert("Deve estar logado pra adicionar um produto no carrinho!");
       return false;
     }
   };

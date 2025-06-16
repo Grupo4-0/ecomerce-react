@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import style from "./card.module.css";
 import axios from "axios";
 import { ButtonAdicionar } from "../components-carrinho/ButtonAdicionar";
 
@@ -26,43 +27,56 @@ export function Card({
   const temPromocao = precoPromocional !== null;
   const [mostrarPromocao] = useState(temPromocao);
 
-  // Buscar categoria
   useEffect(() => {
-    axios
-      .get(`http://localhost:8080/categorias/${idCategoria}`)
-      .then((response) => {
+    const buscarCategoria = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:8080/categorias/nome/${idCategoria}`
+        );
         setProduto((prevProduto) => ({
           ...prevProduto,
           categoria: response.data,
         }));
-      })
-      .catch((error) => {
+      } catch (error) {
         console.error("Erro ao buscar categoria:", error);
-      });
+      }
+    };
+
+    if (idCategoria) {
+      buscarCategoria();
+    }
   }, [idCategoria]);
 
   return (
-    <div>
-      <p>Código: {produto.idProduto} </p>
-      <img src={`http://localhost:8080/produtos/${idProduto}/foto`} alt={produto.nome}/>
+    <div className={style["card-produto"]}>
+      <p className={style.codigo}>Código: {produto.idProduto}</p>
+      <img
+        src={`http://localhost:8080/produtos/${idProduto}/foto`}
+        alt={produto.nome}
+      />
       <h3>{produto.nome}</h3>
-      <p>{produto.descricao}</p>
-      <p>{produto.fabricante}</p>
-      <p>Categoria: {produto.categoria}</p>
+      <p className={style.descricao}>{produto.descricao}</p>
+      <p className={style.fabricante}>{produto.fabricante}</p>
+      <p className={style.categoria}>
+        {produto.categoria ? produto.categoria : "Carregando categoria..."}
+      </p>
 
       {mostrarPromocao ? (
-        <div>
-          <p>Preço: R$ {produto.preco}</p>
-          <p>Promoção: R$ {produto.precoPromocional}</p>
+        <div className={style.preco}>
+          <span className={style.precoOriginal}>R$ {produto.preco}</span>
+          <span className={style.precoPromocional}>
+            R$ {produto.precoPromocional}
+          </span>
         </div>
       ) : (
-        <div>
-          <p>Preço: R$ {produto.preco}</p>
-        </div>
+        <div className={style.preco}>R$ {produto.preco}</div>
       )}
 
-      <p>Quantidade: {produto.estoque}</p>
-      <ButtonAdicionar />
+      <p className={style.estoque}>Disponível: {produto.estoque}</p>
+
+      <div className={style.botaoAdicionar}>
+        <ButtonAdicionar idProduto={produto.idProduto} />
+      </div>
     </div>
   );
 }

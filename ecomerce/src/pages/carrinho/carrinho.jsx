@@ -6,6 +6,7 @@ import { ButtonAumentar } from "../../components/components-carrinho/ButtonAumen
 import { ButtonDiminuir } from "../../components/components-carrinho/ButtonDiminuir";
 import { ButtonFinalizarCompra } from "../../components/components-carrinho/ButtonFinalizarCompra";
 import style from './carrinho.module.css';
+import { Navbar } from "../../components/Navbar/navbar";
 
 export function Carrinho() {
   const navigate = useNavigate();
@@ -46,22 +47,8 @@ export function Carrinho() {
 
   return (
     <div id="principal">
-      <header className={style.header}>
-        <nav className={style.nav}>
-          <ul className={style.navEsquerda}>
-            <li className={style.comum}>
-              <a href="/">Início</a>
-            </li>
-            <li className={style.comum}>
-              <a href="/sobre">Sobre</a>
-            </li>
-          </ul>
-          <ul className={style.navDireita}>
-            <li className={style.cadastro}>
-              <a href="/cliente/cadastro">Cadastre-se</a>
-            </li>
-          </ul>
-        </nav>
+      <header>
+        <Navbar />
       </header>
 
       <h1>Carrinho</h1>
@@ -72,7 +59,7 @@ export function Carrinho() {
               <h2>Pedido #{pedidoAtual.codigo}</h2>
               <ul>
                 {itens.map((item) => (
-                  <li key={item.codigo}>
+                  <div key={item.codigo}>
                     <p>{item.nome}</p>
                     <p>Preço: R${item.precoUnitario}</p>
                     <p>Quantidade: {item.quantidade}</p>
@@ -80,7 +67,7 @@ export function Carrinho() {
                     <ButtonAumentar itemId={item.codigo} />
                     <ButtonDiminuir itemId={item.codigo} />
                     <ButtonRemover idProduto={item.codigoProduto} />
-                  </li>
+                  </div>
                 ))}
               </ul>
               <h3>Frete: R${pedidoAtual.valorFrete}</h3>
