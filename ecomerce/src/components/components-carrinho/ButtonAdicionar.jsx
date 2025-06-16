@@ -6,32 +6,6 @@ export function ButtonAdicionar({ idProduto }) {
   const [adicionado, setAdicionado] = useState(false);
   const token = localStorage.getItem("token");
 
-  // Função para verificar se o produto está no carrinho pela API
-  // const verificarProdutoNoCarrinho = async () => {
-  //   try {
-  //     const response = await axios.get(
-  //       `http://localhost:8080/pedidos/atual`,
-  //       {
-  //         headers: {
-  //           Authorization: `Bearer ${token}`,
-  //           "Content-Type": "application/json",
-  //         },
-  //       }
-  //     );
-      
-  //     setAdicionado(response.data.itens);
-  //   } catch (error) {
-  //     console.error("Erro ao verificar produto no carrinho:", error);
-  //     setAdicionado(false);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   if (token) {
-  //     verificarProdutoNoCarrinho();
-  //   }
-  // }, [idProduto, token]);
-
   const handleClick = async () => {
     if (!token) {
       alert("Você deve estar logado para adicionar ou remover produtos!");
