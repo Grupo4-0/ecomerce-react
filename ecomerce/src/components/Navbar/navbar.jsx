@@ -2,6 +2,7 @@ import styles from "./navbar.module.css";
 import { useNavigate } from "react-router-dom";
 import { ButtonPesquisar } from "../components-header/ButtonPesquisar";
 import { CircleUser, Bell, ShoppingBasket } from "lucide-react";
+import { ButtonListaCategorias } from "../components-home/ButtonListaCategorias";
 
 export function Navbar() {
   const navigate = useNavigate();
@@ -13,7 +14,7 @@ export function Navbar() {
       <ul className={styles.menu}>
         <li><a href="/">Início</a></li>
         <li><a href="/promocoes">Promoções</a></li>
-        <li><a href="/categorias">Categorias</a></li>
+        <li><ButtonListaCategorias /></li>
         <li><a href="/sobre">Quem somos</a></li>
       </ul>
 

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import style from "./card.module.css";
 import axios from "axios";
 import { ButtonAdicionar } from "../components-carrinho/ButtonAdicionar";
+import { ButtonSaibaMais } from "./ButtonSaibaMais";
 
 export function Card({
   idProduto,
@@ -76,6 +77,7 @@ export function Card({
 
       <div className={style.botaoAdicionar}>
         <ButtonAdicionar idProduto={produto.idProduto} />
+        <ButtonSaibaMais idProduto={produto.idProduto} />
       </div>
     </div>
   );

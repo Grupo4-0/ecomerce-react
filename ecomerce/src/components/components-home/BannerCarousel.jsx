@@ -26,14 +26,6 @@ export function BannerCarousel() {
     setCurrentIndex(index);
   };
 
-  const goToPrevious = () => {
-    setCurrentIndex(currentIndex === 0 ? banners.length - 1 : currentIndex - 1);
-  };
-
-  const goToNext = () => {
-    setCurrentIndex(currentIndex === banners.length - 1 ? 0 : currentIndex + 1);
-  };
-
   const handleImageLoad = (index) => {
     setImageLoaded(prev => ({ ...prev, [index]: true }));
   };
@@ -65,25 +57,6 @@ export function BannerCarousel() {
           ))}
         </div>
       </div>
-
-      {/* Setas de navegação */}
-      <button 
-        className={`${styles.carouselBtn} ${styles.carouselBtnPrev}`}
-        onClick={goToPrevious}
-        aria-label="Imagem anterior"
-        type="button"
-      >
-        ‹
-      </button>
-      
-      <button 
-        className={`${styles.carouselBtn} ${styles.carouselBtnNext}`}
-        onClick={goToNext}
-        aria-label="Próxima imagem"
-        type="button"
-      >
-        ›
-      </button>
 
       {/* Indicadores (dots) */}
       <div className={styles.carouselDots}>

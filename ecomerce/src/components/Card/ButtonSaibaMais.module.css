@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap');
+
+:root {
+  --cor-primaria: #F1396D;
+  --cor-secundaria: #ACC95F;
+  --subcor-primaria: #F6ABBB;
+  --subcor-secundaria: #457F4B;
+  --cor-titulo: #121111;
+  --cor-subtitulo: #8F8F8F;
+  --cor-cinza: #E7E7E7;
+}
+
+.overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  font-family: 'Poppins', sans-serif;
+}
+
+.modal {
+  background-color: #FDFDFD;
+  border-radius: 38px;
+  width: 1000px;
+  max-width: 95%;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  padding: 20px;
+  position: relative;
+}
+
+.modalContent {
+  display: flex;
+  flex-direction: row;
+}
+
+.painelEsquerdo {
+  width: 50%;
+  padding: 20px;
+  text-align: center;
+}
+
+.imagemProduto {
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
+}
+
+.codigoProduto {
+  margin-top: 10px;
+  color: var(--cor-subtitulo);
+  font-weight: 500;
+}
+
+.painelDireito {
+  width: 50%;
+  padding: 20px;
+}
+
+.nomeProduto {
+  color: var(--cor-primaria);
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.descricao,
+.categoria,
+.fabricante,
+.preco,
+.promocao,
+.estoque {
+  color: var(--cor-titulo);
+  font-size: 16px;
+  margin: 8px 0;
+}
+
+.promocao del {
+  color: #888;
+  margin-right: 10px;
+}
+
+.adicionarBtn {
+  margin-top: 20px;
+}
+
+.botaoFechar {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  background: var(--cor-primaria);
+  color: white;
+  font-size: 16px;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+}
+
+.botaoAbrir {
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--cor-primaria);
+  color: white;
+  border: none;
+  border-radius: 25px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.botaoAbrir:hover {
+  background-color: var(--subcor-primaria);
+}

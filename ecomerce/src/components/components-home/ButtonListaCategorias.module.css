@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root {
+  --cor-primaria: #F1396D;
+  --cor-secundaria: #ACC95F;
+  --subcor-primaria: #F6ABBB;
+  --subcor-secundaria: #457F4B;
+  --cor-titulo: #121111;
+  --cor-subtitulo: #8F8F8F;
+  --cor-cinza: #E7E7E7;
+}
+
+.container {
+  position: relative;
+  display: inline-block;
+}
+
+.botao {
+  border: none;
+  background-color: transparent;
+  font-family: 'Poppins', sans-serif;
+  text-decoration: none;
+  color: var(--cor-secundaria);
+  font-weight: 400;
+  font-size: 1.1rem;
+  padding: 8px 16px;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+}
+
+.botao:hover {
+  background-color: var(--subcor-primaria);
+  color: var(--cor-titulo);
+}
+
+.dropdown {
+  position: absolute;
+  top: 100%;
+  left: -100px;
+  background-color: #fff;
+  border: 1px solid var(--cor-cinza);
+  border-radius: 10px;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+  z-index: 1000;
+  padding: 10px;
+  min-width: 160px;
+}
+
+.item {
+  width: 300px;
+  border:rgba(248, 122, 181, 0.562);
+  border-color: #ACC95F;
+  color: var(--cor-secundaria);
+  border-radius: 10px;
+  padding: 0.6rem;
+  font-size: 1rem;
+  transition: background 0.3s ease;
+}
+
+.item:hover {
+  color: var(--cor-primaria);
+  background-color: var(--subcor-primaria);
+}
