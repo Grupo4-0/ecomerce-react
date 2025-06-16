@@ -6,21 +6,23 @@ export function HomeFuncionario() {
     //add botao para mandar para a home principal
     return (
         <div className={styles.conteudo}>
-            <h1> Bem vindo(a)!</h1>
+            <button onClick={() => navigate(-1)} className={styles.voltar}>
+                &larr; Voltar
+            </button>
+            <h1>Painel do Funcionário</h1>
             <div >
-                <h1>Painel do Funcionário</h1>
+                <h1> Bem vindo(a)!</h1>
                 <p>Gerencie os produtos e categorias aqui.</p>
                 <h2> O que voce deseja cadastrar? </h2>
                 <div className={styles.botoes}>
                     <button onClick={() => navigate("/cadastro-categoria")}>
-                        Categoria
+                        Nova Categoria
                     </button>
                     <button onClick={() => navigate("/cadastro-produto")}>
-                        Produto
+                        Novo Produto
                     </button>
                 </div>
             </div>
-
         </div>
     )
 
