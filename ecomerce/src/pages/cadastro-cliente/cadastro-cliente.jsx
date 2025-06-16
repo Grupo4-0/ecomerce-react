@@ -20,7 +20,9 @@ export function CadastroCliente() {
   });
 
   const [confirmaSenha, setConfirmaSenha] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
+  const [mostrarSenha, setMostrarSenha] = useState(false);
+  const [mostrarConfirma, setMostrarConfirma] = useState(false);
+
 
   // Função para formatar CPF
   const formatarCPF = (valor) => {
@@ -199,7 +201,7 @@ export function CadastroCliente() {
           <nav className={styles.navbar}>
             <span className={styles.titulo}>Cadastro</span>
             <ul>
-              <li className={styles.navItem} onClick={() => navigate("/home")}>
+              <li className={styles.navItem} onClick={() => navigate("/homeFuncionario")}>
                 HOME
               </li>
               <li className={styles.navItem} onClick={() => navigate("/sobre")}>
@@ -320,9 +322,6 @@ export function CadastroCliente() {
                   onChange={(e) => setDados({ ...dados, senha: e.target.value })}
                   required
                 />
-                {/* <button type="button" onClick={() => setShowPassword(!showPassword)} className={styles.toggleSenha}>
-                  {showPassword ? <Eye size="20" color="#8F8F8F" /> : <EyeOff size="20" color="#8F8F8F" />}
-                </button> */}
               </div>
               <div className={styles.senha}>
                 <label className={styles.label}> Confirme sua Senha </label>
