@@ -1,0 +1,26 @@
+.conteudo {
+    min-width: 100vh;
+    max-width: fit-content;
+    padding: 30px;
+    border: 2px solid #F1396D;
+    border-radius: 15px;
+    background-color: #FD6081;
+    box-shadow: 0px 4px 12px;
+    text-align: center;
+}
+
+.conteudo h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.conteudo h2 {
+    font-size: 20px;
+    margin-top: 20px;
+}
+
+.conteudo p {
+    font-size: 16px;
+    color: #5e5a5a;
+    margin-bottom: 20px;
+}

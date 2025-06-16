@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import styles from "./cadastro-funcionario.module.css";
-import gatoo from "../../assets/foto-gato.jpg";
+import gatoo from "../../assets/gatoo.jpeg";
 
 export function CadastroFuncionario() {
   const [form, setForm] = useState({
@@ -74,15 +74,12 @@ export function CadastroFuncionario() {
           </div>
 
           <div className={styles.formNome}>
-            // <label className={styles.labelGenero}>Gênero</label>
-            //{" "}
+            <label className={styles.labelGenero}>Gênero</label>{" "}
             <select name="genero" value={form.genero} onChange={handleChange} required>
-              // <option value="">Selecione</option>
-              // <option value="MASCULINO">Masculino</option>
-              // <option value="FEMININO">Feminino</option>
-              //{" "}
-            </select>
-            //{" "}
+              <option value="">Selecione</option>
+              <option value="MASCULINO">Masculino</option>
+              <option value="FEMININO">Feminino</option>{" "}
+            </select>{" "}
           </div>
 
           <div className={styles.formNome}>
