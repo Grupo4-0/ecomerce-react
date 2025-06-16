@@ -5,7 +5,7 @@ import { ButtonRemover } from "../../components/components-carrinho/ButtonRemove
 import { ButtonAumentar } from "../../components/components-carrinho/ButtonAumentar";
 import { ButtonDiminuir } from "../../components/components-carrinho/ButtonDiminuir";
 import { ButtonFinalizarCompra } from "../../components/components-carrinho/ButtonFinalizarCompra";
-import style from './carrinho.module.css';
+import style from "./carrinho.module.css";
 import { Navbar } from "../../components/Navbar/navbar";
 
 export function Carrinho() {
@@ -46,40 +46,45 @@ export function Carrinho() {
   }, [navigate]);
 
   return (
-    <div id="principal">
+    <div className={style.container}>
       <header>
         <Navbar />
       </header>
 
-      <h1>Carrinho</h1>
-      <div id="pedidoAtual">
+      <h1 className={style.titulo}>Carrinho</h1>
+      <div className={style.pedidoAtual}>
         {pedidoAtual ? (
           <div>
-            <div id="dadosPedido">
-              <h2>Pedido #{pedidoAtual.codigo}</h2>
-              <ul>
+            <div className={style.dadosPedido}>
+              <h2>Código do Pedido #{pedidoAtual.codigo}</h2>
+              <ul className={style.listaItens}>
                 {itens.map((item) => (
-                  <div key={item.codigo}>
-                    <p>{item.nome}</p>
+                  <li key={item.codigo} className={style.item}>
+                    <p>
+                      <strong>{item.nome}</strong>
+                    </p>
                     <p>Preço: R${item.precoUnitario}</p>
                     <p>Quantidade: {item.quantidade}</p>
                     <p>Total: R${item.precoTotal}</p>
-                    <ButtonAumentar itemId={item.codigo} />
-                    <ButtonDiminuir itemId={item.codigo} />
-                    <ButtonRemover idProduto={item.codigoProduto} />
-                  </div>
+                    <div className={style.controles}>
+                      <ButtonAumentar itemId={item.codigo} />
+                      <ButtonDiminuir itemId={item.codigo} />
+                      <ButtonRemover idProduto={item.codigoProduto} />
+                    </div>
+                  </li>
                 ))}
               </ul>
-              <h3>Frete: R${pedidoAtual.valorFrete}</h3>
-              <h3>Total: R${pedidoAtual.precoTotal}</h3>
+              <div className={style.totais}>
+                <h3>Frete: R${pedidoAtual.valorFrete}</h3>
+                <h3>Total: R${pedidoAtual.precoTotal}</h3>
+              </div>
             </div>
             <ButtonFinalizarCompra />
           </div>
         ) : (
-          <div id="carrinhoVazio">
+          <div className={style.carrinhoVazio}>
             <h2>🐾 Nada por aqui ainda...</h2>
             <p>Seu melhor amigo tá esperando por aquele agrado especial! 💖</p>
-
             <img
               src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExdGoyZGpmb3Zzenk0MzhwNGJqZWY2amthNjFmaTRocXNyNmpydjR6ZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/kTHH8wDg1Cmcw/giphy.gif"
               alt="Gif fofo de carrinho vazio"
