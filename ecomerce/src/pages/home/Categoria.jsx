@@ -33,6 +33,7 @@ export function Categoria() {
   if (produtos.length === 0) {
     return (
       <div className={styles.mensagemVazia}>
+        <Navbar />
         <p>Nenhum produto encontrado na categoria <strong>{nome}</strong>.</p>
       </div>
     );

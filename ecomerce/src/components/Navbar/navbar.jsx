@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { ButtonPesquisar } from "../components-header/ButtonPesquisar";
 import { CircleUser, Bell, ShoppingBasket } from "lucide-react";
 import { ButtonListaCategorias } from "../components-home/ButtonListaCategorias";
+import { Link } from "react-router-dom";
 
 export function Navbar() {
   const navigate = useNavigate();
