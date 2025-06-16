@@ -1,5 +1,9 @@
+import { Carrinho } from "../carrinho/carrinho";
+
 export function Home() {
   return (
-    <h1>Funcionou2!!</h1>
-  )
+    <>
+      <Carrinho />
+    </>
+  );
 }
