@@ -10,9 +10,10 @@ import imgPaulo from "../../assets/PauloRicardo.png";
 
 function Sobre() {
   return (
-    <div className="poppins-regular-italic ">
-      <h1 style={{ textAlign: "center", marginTop: "20px" }}>Sobre a Equipe</h1>
-      <div className="grid-container-sobre">
+    <div className="grid-container-sobre">
+      <div className="poppins-regular-italic ">
+        <h1 style={{ textAlign: "center", marginTop: "20px" }}>Sobre a Equipe</h1>
+
         <ProfileFlipCard
           image={imgMaria}
           name="Maria Araguão"

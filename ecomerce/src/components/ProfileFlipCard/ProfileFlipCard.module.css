@@ -49,3 +49,12 @@
   margin-left: auto;
   margin-right: auto;
 }
+
+.cardsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* Centraliza os cards */
+  gap: 20px; /* Espaçamento entre os cards */
+  max-width: 800px; /* Ajuste conforme necessário */
+  margin: 0 auto; /* Centraliza o container na página */
+}
