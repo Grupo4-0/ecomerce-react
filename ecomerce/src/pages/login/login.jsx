@@ -96,7 +96,7 @@ export function Login() {
       if (isCliente === true) {
         navigate("/");
       } else if (isCliente === false) {
-        navigate("/homeFuncionario");
+        navigate("/funcionarioHome");
       } else {
         alert("Erro no redirecionamento!");
       }

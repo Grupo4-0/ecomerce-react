@@ -73,7 +73,7 @@ export function CadastroCategoria() {
       alert("Categoria cadastrada com sucesso!");
       setCategoriasExistentes([...categoriasExistentes, { nome }]);
       setNome("");
-      navigate("/homeFuncionario");
+      navigate("/funcionarioHome");
 
     } catch (err) {
       console.error("Erro ao cadastrar categoria:", err);
