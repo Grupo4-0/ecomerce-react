@@ -81,6 +81,21 @@
   height: 100%;
 }
 
+.controles button {
+  border:rgba(248, 122, 181, 0.562);
+  border-color: #ACC95F;
+  color: var(--cor-secundaria);
+  border-radius: 10px;
+  padding: 0.6rem;
+  font-size: 1rem;
+  transition: background 0.3s ease;
+}
+
+.controles button:hover {
+  color: var(--cor-primaria);
+  background-color: var(--subcor-primaria);
+}
+
 .item p strong {
   font-family: 'Poppins', sans-serif;
   font-size: 18px;

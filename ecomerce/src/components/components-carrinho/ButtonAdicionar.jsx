@@ -8,12 +8,9 @@ export function ButtonAdicionar({ idProduto }) {
   const token = localStorage.getItem("token");
 
   const handleClick = async () => {
-    if (adicionado) {
-      const sucesso = await removerProduto();
-      if (sucesso) setAdicionado(false);
-    } else {
-      const sucesso = await adicionarProduto();
-      if (sucesso) setAdicionado(true);
+    const sucesso = await adicionarProduto();
+    if (sucesso) {
+      window.location.reload(); // ou use um setItens atualizado
     }
   };
 
@@ -49,7 +46,9 @@ export function ButtonAdicionar({ idProduto }) {
         }
       );
       alert("Produto removido do carrinho!!");
-      window.location.reload();
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000);
       return true;
     } catch (error) {
       alert("Erro ao remover produto no carrinho!");

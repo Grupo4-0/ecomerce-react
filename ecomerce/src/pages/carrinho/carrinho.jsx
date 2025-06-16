@@ -83,8 +83,8 @@ export function Carrinho() {
           </div>
         ) : (
           <div className={style.carrinhoVazio}>
-            <h2>🐾 Nada por aqui ainda...</h2>
-            <p>Seu melhor amigo tá esperando por aquele agrado especial! 💖</p>
+            <h2>Nada por aqui ainda...</h2>
+            <p>Seu melhor amigo tá esperando por aquele agrado especial!</p>
             <img
               src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExdGoyZGpmb3Zzenk0MzhwNGJqZWY2amthNjFmaTRocXNyNmpydjR6ZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/kTHH8wDg1Cmcw/giphy.gif"
               alt="Gif fofo de carrinho vazio"
