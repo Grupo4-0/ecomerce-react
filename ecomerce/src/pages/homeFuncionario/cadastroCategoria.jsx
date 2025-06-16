@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import styles from "./cadastroCategoria.module.css"
+import fofinho from "../../assets/fofinho.jpg"
 
 export function CadastroCategoria() {
   const [nome, setNome] = useState("");
@@ -9,7 +11,7 @@ export function CadastroCategoria() {
   const navigate = useNavigate();
   const [categoriasExistentes, setCategoriasExistentes] = useState([]);
 
-  //puxo as categorias que ja estao no meu banco p tratar caso o funcionario digite uma categoria q ja existe
+  //puxo as categorias que ja estao no meu banco p tratar caso o funcionario digite uma categoria já existente
   useEffect(() => {
     const fetchCategorias = async () => {
       try {
@@ -34,14 +36,13 @@ export function CadastroCategoria() {
       setError("O nome da categoria é obrigatório!");
       return;
     }
-    //***pensar se coloco apenas o required ou mensagem personalizada
 
     // Verifica se a categoria já existe
     if (categoriasExistentes.some((c) => c.nome.toLowerCase() === nome.trim().toLowerCase())) {
       setError("Categoria já existente.");
       return;
     }
-    //Não permite numeros
+    //Não permite numeros caso o funcionario envie com eles irá receber essa mensagem
     if (/\d/.test(nome)) {
       setError("Retire os números do nome da categoria.");
       return;
@@ -49,6 +50,7 @@ export function CadastroCategoria() {
 
     setLoading(true);
 
+    //adiçao de nova categoria
     try {
       const token = localStorage.getItem("token");
 
@@ -75,42 +77,60 @@ export function CadastroCategoria() {
       } else if (err.response?.status === 401 || err.response?.status === 403) {
         setError("Acesso negado. Faça login novamente.");
       } else {
-        setError("Erro inesperado. Tente novamente.");
+        setError("Erro inesperado :( Por favor, tente novamente!");
       }
     } finally {
       setLoading(false);
     }
   };
-
+  //body
   return (
-    <div>
-      <h2>Cadastro de Categoria</h2>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="nome">Nome da categoria</label>
-        <input
-          id="nome"
-          type="text"
-          placeholder="Nome da categoria"
-          name="nome"
-          value={nome}
-          onChange={(e) => {
-            const valor = e.target.value;
-            setNome(valor);
+    <div className={styles.principal}>
+      <div className={styles.painelEsquerdo}>
+        <div className={styles.header}>
+          <button onClick={() => navigate(-1)} className={styles.voltar}>
+            &larr; Voltar
+          </button>
+        </div>
 
-            // Verifica se tem algum número no nome da categoria
-            if (/\d/.test(valor)) {
-              setError("Não é permitido números no nome da categoria.");
-            } else {
-              setError("");
-            }
-          }}
-        />
+        <div className={styles.dados}>
+          <h2>Cadastro de Categoria</h2>
 
-        <button type="submit" disabled={loading}>
-          {loading ? "Cadastrando..." : "Cadastrar"}
-        </button>
-        {error && <p style={{ color: "red", marginTop: "1rem" }}>{error}</p>}
-      </form>
+          <form className={styles.formCadastro} onSubmit={handleSubmit}>
+            <label htmlFor="nome">Nome da categoria</label>
+            <input
+              className={styles.inputCategoria}
+              id="nome"
+              type="text"
+              placeholder="Nome da categoria"
+              name="nome"
+              value={nome}
+              onChange={(e) => {
+                const valor = e.target.value;
+                setNome(valor);
+
+                if (/\d/.test(valor)) {
+                  setError("Não é permitido números no nome da categoria.");
+                } else {
+                  setError("");
+                }
+              }}
+            />
+
+            <button type="submit" className={styles.botaoEnviar} disabled={loading}>
+              {loading ? "Cadastrando..." : "Cadastrar"}
+            </button>
+            {error && <p style={{ color: "red", marginTop: "1rem" }}>{error}</p>}
+          </form>
+        </div>
+      </div>
+
+      <div className={styles.painelDireito}>
+        <div>
+          <h1 className={styles.tituloImagem}>Wardiere</h1>
+          <img src={fofinho} className={styles.imagem} alt="Identidade visual do site que é um gato deitado na grama" />
+        </div>
+      </div>
     </div>
   );
 }
