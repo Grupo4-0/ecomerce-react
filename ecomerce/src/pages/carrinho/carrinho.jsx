@@ -45,6 +45,8 @@ export function Carrinho() {
     buscarPedido();
   }, [navigate]);
 
+  const carrinhoVazio = !pedidoAtual || itens.length === 0;
+
   return (
     <div className={style.container}>
       <header>
@@ -53,7 +55,7 @@ export function Carrinho() {
 
       <h1 className={style.titulo}>Carrinho</h1>
       <div className={style.pedidoAtual}>
-        {pedidoAtual ? (
+        {!carrinhoVazio ? (
           <div>
             <div className={style.dadosPedido}>
               <h2>Código do Pedido #{pedidoAtual.codigo}</h2>

@@ -13,6 +13,7 @@ import { CadastroCliente } from "../pages/cadastro-cliente/cadastro-cliente";
 import { CadastroFuncionario } from "../pages/cadastro-funcionario/cadastro-funcionario";
 import { Promocoes } from "../pages/home/Promocoes";
 import { Produto } from "../pages/home/Produto";
+import { Carrinho } from "../pages/carrinho/carrinho"
 
 export function Rotas() {
   return (
@@ -23,6 +24,7 @@ export function Rotas() {
       <Route path="/categoria/:nome" element={<Categoria />} />
       <Route path="/promocoes" element={<Promocoes />} />
       <Route path="/produto/:id" element={<Produto />} />
+      <Route path="/Carrinho" element={<Carrinho />} />
       {/* <Route path="/cadastro-produto" element={<CadastroProduto />} />
       <Route path="/cadastro-categoria" element={<CadastroCategoria />} />
       <Route path="/sobre" element={<About />} /> */}

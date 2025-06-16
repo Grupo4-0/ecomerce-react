@@ -92,7 +92,7 @@ export function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (validateForm()) {
-      const isCliente = await login(); // agora você tem o valor retornado
+      const isCliente = await login(); 
       if (isCliente === true) {
         navigate("/");
       } else if (isCliente === false) {

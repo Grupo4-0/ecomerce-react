@@ -16,7 +16,7 @@
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
   padding: 20px;
   width: 270px;
-  height: 550px;
+  height: 600px;
   color: var(--cor-titulo);
   display: flex;
   flex-direction: column;
@@ -108,7 +108,7 @@
 .botaoAdicionar {
   align-items: center;
   justify-content: center;
-  gap:30px;
+  gap:20px;
   display: flex;
   flex-direction: row;
   margin-top: auto;
@@ -128,4 +128,17 @@
 
 .botaoAdicionar button:hover {
   background-color: var(--subcor-primaria);
+}
+
+.botaoSaibaMais {
+  text-decoration: none;
+  font-size: 15px;
+  background-color: var(--cor-primaria);
+  border: none;
+  padding: 10px 20px;
+  color: white;
+  font-weight: 600;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
