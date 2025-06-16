@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import styles from "./cadastro-cliente.module.css";
-import Image from "../../assets/foto-gato.jpg";
+import Image from "../../assets/gatoo.jpeg";
 import { EyeOff } from "lucide-react";
 import { Eye } from "lucide-react";
 import { useNavigate } from "react-router-dom";
@@ -340,6 +340,9 @@ export function CadastroCliente() {
             <button type="submit" className={styles.ButtonEnviar}>
               Cadastrar-se
             </button>
+            <span className={styles.bottomLink} onClick={() => navigate("/funcionario/cadastro")}>
+              Cadastre-se como Funcionário
+            </span>
           </form>
         </div>
       </div>
