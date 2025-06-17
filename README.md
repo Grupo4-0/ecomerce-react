@@ -16,7 +16,7 @@ Este projeto tem como objetivo apresentar uma plataforma fictícia de pet shop c
 - React  
 - Node.js  
 
-## 💡 Funcionalidades Previstas
+## 💡 Funcionalidades
 
 - Página inicial com destaques e categorias  
 - Cadastro e login de usuários 
