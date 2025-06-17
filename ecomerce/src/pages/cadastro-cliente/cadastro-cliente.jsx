@@ -201,7 +201,7 @@ export function CadastroCliente() {
           <nav className={styles.navbar}>
             <span className={styles.titulo}>Cadastro</span>
             <ul>
-              <li className={styles.navItem} onClick={() => navigate("/homeFuncionario")}>
+              <li className={styles.navItem} onClick={() => navigate("/")}>
                 HOME
               </li>
               <li className={styles.navItem} onClick={() => navigate("/sobre")}>

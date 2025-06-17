@@ -169,7 +169,7 @@ export function CadastroFuncionario() {
         <nav className={styles.navbar}>
           <span className={styles.titulo}>Cadastro Funcionário</span>
           <div>
-            <a className={styles.navItem} onClick={() => navigate("/homeFuncionario")}>HOME</a>
+            <a className={styles.navItem} onClick={() => navigate("/")}>HOME</a>
             <a className={styles.navItem} onClick={() => navigate("/sobre")}>SOBRE</a>
             <a className={styles.navItemLogin} onClick={() => navigate("/login")}>LOGIN</a>
           </div>

@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root {
+  --cor-primaria: #F1396D;
+  --cor-secundaria: #ACC95F;
+  --subcor-primaria: #F6ABBB;
+  --subcor-secundaria: #457F4B;
+  --cor-titulo: #121111;
+  --cor-subtitulo: #8F8F8F;
+  --cor-cinza: #E7E7E7;
+}
+
+.ButtonNav {
+  font-family: 'Poppins', sans-serif;
+  background-color: transparent;
+  color: var(--cor-secundaria);
+  padding: 10px 20px;
+  border: none;
+  border-radius: 25px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.ButtonNav:hover {
+  background-color: var(--subcor-primaria);
+  color: var(--cor-titulo);
+  transform: scale(1.05);
+}
+
+.ButtonNav:disabled {
+  background-color: var(--cor-cinza);
+  color: var(--cor-subtitulo);
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}

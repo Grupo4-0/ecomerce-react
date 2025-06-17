@@ -6,7 +6,7 @@ export function FuncionarioHome() {
   //add botao para mandar para a home principal atraves do login
   return (
     <div className={styles.conteudo}>
-      <button onClick={() => navigate(-1)} className={styles.voltar}>
+      <button onClick={() => navigate("/")} className={styles.voltar}>
         &larr; Voltar
       </button>
       <h1>Painel do Funcionário</h1>

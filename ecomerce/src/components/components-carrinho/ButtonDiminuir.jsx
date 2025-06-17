@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Minus } from 'lucide-react';
+import { Minus } from "lucide-react";
 
 export function ButtonDiminuir({ itemId }) {
   const token = localStorage.getItem("token");
@@ -7,14 +7,17 @@ export function ButtonDiminuir({ itemId }) {
   const diminuir = async () => {
     try {
       await axios.patch(
-        `http://localhost:8080/pedidos/diminuir/${itemId}`, null, 
+        `http://localhost:8080/pedidos/diminuir/${itemId}`,
+        null,
         {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         }
       );
-      window.location.reload();
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000);
       return true;
     } catch (error) {
       alert("Não foi possível diminuir a quantidade!");

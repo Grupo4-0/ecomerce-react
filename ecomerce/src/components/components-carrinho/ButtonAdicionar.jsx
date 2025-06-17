@@ -1,19 +1,27 @@
 import axios from "axios";
-import { useState } from "react";
-import { BsCartPlus } from "react-icons/bs";
-import { BsCartCheckFill } from "react-icons/bs";
+import { useEffect, useState } from "react";
+import { BsCartPlus, BsCartCheckFill } from "react-icons/bs";
 
 export function ButtonAdicionar({ idProduto }) {
   const [adicionado, setAdicionado] = useState(false);
   const token = localStorage.getItem("token");
 
   const handleClick = async () => {
+    if (!token) {
+      alert("Você deve estar logado para adicionar ou remover produtos!");
+      return;
+    }
+
     if (adicionado) {
       const sucesso = await removerProduto();
-      if (sucesso) setAdicionado(false);
+      if (sucesso) {
+        setAdicionado(false);
+      }
     } else {
       const sucesso = await adicionarProduto();
-      if (sucesso) setAdicionado(true);
+      if (sucesso) {
+        setAdicionado(true);
+      }
     }
   };
 
@@ -29,16 +37,14 @@ export function ButtonAdicionar({ idProduto }) {
           },
         }
       );
-      alert("Produto adicionado ao carrinho com sucesso!");
       return true;
     } catch (error) {
-      alert("Erro ao adicionar produto no carrinho!");
+      alert("Erro ao adicionar o produto no carrinho!");
       return false;
     }
   };
 
   const removerProduto = async () => {
-    console.log("Token:", token);
     try {
       await axios.delete(
         `http://localhost:8080/pedidos/excluir/item/${idProduto}`,
@@ -49,11 +55,10 @@ export function ButtonAdicionar({ idProduto }) {
           },
         }
       );
-      alert("Produto removido do carrinho!!");
-      window.location.reload();
+      alert("Produto removido do carrinho!");
       return true;
     } catch (error) {
-      alert("Erro ao remover produto no carrinho!");
+      alert("Erro ao remover produto do carrinho!");
       return false;
     }
   };

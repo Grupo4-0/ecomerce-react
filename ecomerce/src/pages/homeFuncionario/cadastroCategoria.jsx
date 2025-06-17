@@ -70,6 +70,7 @@ export function CadastroCategoria() {
       setCategoriasExistentes([...categoriasExistentes, { nome }]);
       setNome("");
       navigate("/funcionarioHome");
+
     } catch (err) {
       console.error("Erro ao cadastrar categoria:", err);
       if (err.response?.status === 400 || err.response?.status === 409) {

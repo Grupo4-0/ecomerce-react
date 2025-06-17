@@ -6,6 +6,7 @@ import fofinho from "../../assets/fofinho.jpg";
 import { EyeOff } from "lucide-react";
 import { Eye } from "lucide-react";
 import { PawPrint } from "lucide-react";
+import { AlertaSucesso } from "../../components/alert/AlertaSucesso";
 
 export function Login() {
   const navigate = useNavigate();
@@ -57,9 +58,8 @@ export function Login() {
       );
       const token = response.data;
       localStorage.setItem("token", token);
-      alert("Login efetuado com sucesso!");
-
-      const isCliente = await cliente(token); // agora espera a verificação
+      <AlertaSucesso mensagem="Bem-vindo de volta! 🐶 Estamos felizes em te ver!" />
+      const isCliente = await cliente(token);
       return isCliente;
     } catch (err) {
       console.error("Erro no login:", err);
@@ -89,7 +89,7 @@ export function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (validateForm()) {
-      const isCliente = await login(); // agora você tem o valor retornado
+      const isCliente = await login(); 
       if (isCliente === true) {
         navigate("/");
       } else if (isCliente === false) {

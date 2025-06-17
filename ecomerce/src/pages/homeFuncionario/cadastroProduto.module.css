@@ -28,7 +28,7 @@
     --cor-fundo: #FFE5EB;
 }
 
-body {
+.body {
     min-height: 100vh;
     display: flex;
     align-items: center;

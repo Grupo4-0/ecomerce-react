@@ -15,7 +15,6 @@ export function ButtonRemover({ idProduto }) {
           },
         }
       );
-      alert("Produto removido do carrinho!!");
       window.location.reload();
       return true;
     } catch (error) {

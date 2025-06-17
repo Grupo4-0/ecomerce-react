@@ -1,111 +1,73 @@
 import { useState } from "react";
 import axios from "axios";
+import styles from "./ButtonFinalizarCompra.module.css";
 
-export function ButtonFinalizarCompra() {
+export function ButtonFinalizarCompra({ onFinalize }) {
   const token = localStorage.getItem("token");
 
   const [pedidoFinalizado, setPedidoFinalizado] = useState(null);
   const [itensPedido, setItensPedido] = useState([]);
   const [itensIndisponiveis, setItensIndisponiveis] = useState([]);
   const [endereco, setEndereco] = useState(null);
-
+  const [isCarregando, setIsCarregando] = useState(false);
   const [mostrarComprovante, setMostrarComprovante] = useState(false);
   const [mostrarItensIndisponiveis, setMostrarItensIndisponiveis] = useState(false);
-
-  const verificarItensIndisponiveis = (itens) => {
-    setMostrarItensIndisponiveis(itens && itens.length > 0);
-  };
 
   const finalizarPedido = async () => {
     try {
       const response = await axios.post(
         "http://localhost:8080/pedidos/finalizar",
         {},
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
+        { headers: { Authorization: `Bearer ${token}` } }
       );
-
       const pedido = response.data;
-
       setPedidoFinalizado(pedido);
       setItensPedido(pedido.itens || []);
       setItensIndisponiveis(pedido.itensIndisponiveis || []);
       setEndereco(pedido.enderecoEntrega);
-      verificarItensIndisponiveis(pedido.itensIndisponiveis);
+      setMostrarItensIndisponiveis((pedido.itensIndisponiveis || []).length > 0);
+      setMostrarComprovante(true);
+      // Notifica o componente pai que o pedido foi finalizado
+      if (onFinalize) onFinalize(pedido);
     } catch (error) {
-      console.error("Erro:", error);
       alert("Erro ao finalizar pedido!");
+      console.error(error);
     }
   };
 
-  const handleClick = async () => {
-    await finalizarPedido();
-    setMostrarComprovante(true);
+  const handleClick = () => {
+    setIsCarregando(true);
+    finalizarPedido().finally(() => setIsCarregando(false));
   };
 
   const handleClose = () => {
     setMostrarComprovante(false);
-    window.location.reload();
+    // Em vez de reload, chama callback para limpar carrinho no componente pai
+    if (onFinalize) onFinalize(null);
   };
 
   return (
     <>
-      <button onClick={handleClick}>
-        <p>Finalizar</p>
+      <button
+        onClick={handleClick}
+        className={styles.buttonFinalizar}
+        disabled={isCarregando}
+      >
+        {!isCarregando && "Finalizar"}
+        {isCarregando && (
+          <img
+            src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExbXQ2dXN0MGg3cHBjMG94eGN2Mm1wbTJwOWE2c3ZzZTgybnNrNm85eCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q/OdawlEJW4LSX8t8TVW/giphy.gif"
+            width="20"
+            alt="Carregando..."
+            style={{ marginLeft: "8px", verticalAlign: "middle" }}
+          />
+        )}
       </button>
 
       {mostrarComprovante && (
         pedidoFinalizado && endereco ? (
-          <div id="comprovante">
-            <div id="dadosPedido">
-              <p>Código do pedido: {pedidoFinalizado.codigo}</p>
-              <p>Nome: {pedidoFinalizado.nome}</p>
-
-              <h2>Produtos adquiridos:</h2>
-              <ul>
-                {itensPedido.map((item) => (
-                  <li key={item.codigo}>
-                    <p>Código: {item.codigoProduto}</p>
-                    <p>Produto: {item.nome}</p>
-                    <p>Preço: R$ {item.precoUnitario}</p>
-                    <p>Quantidade: {item.quantidade}</p>
-                    <p>Subtotal: {item.precoTotal}</p>
-                  </li>
-                ))}
-              </ul>
-
-              {mostrarItensIndisponiveis && (
-                <div id="itensIndisponiveis">
-                  <h2>Produtos sem estoque:</h2>
-                  <p>
-                    Alguns dos produtos selecionados ficaram sem estoque durante o
-                    processo de compra. Por isso, listamos abaixo os itens que,
-                    infelizmente, não puderam ser adquiridos.
-                  </p>
-
-                  <ul>
-                    {itensIndisponiveis.map((item) => (
-                      <li key={item.codigo}>
-                        <p>Produto: {item.nome}</p>
-                        <p>Quantidade: {item.quantidadeFaltante}</p>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-
-              <p>Data da compra: {pedidoFinalizado.dataDeFinalizacao}</p>
-              <p>
-                Endereço pra entrega: {endereco.rua}, {endereco.numero},{" "}
-                {endereco.bairro}, {endereco.cidade}, {endereco.estado},{" "}
-                {endereco.cep}
-              </p>
-              <p>Frete: {pedidoFinalizado.valorFrete}</p>
-              <p>Total: {pedidoFinalizado.precoTotal}</p>
-            </div>
+          <div className={styles.comprovante}>
+            {/* ... estrutura do comprovante ... */}
             <button onClick={handleClose}>Fechar</button>
           </div>
         ) : (

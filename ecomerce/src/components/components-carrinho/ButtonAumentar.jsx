@@ -7,14 +7,17 @@ export function ButtonAumentar({ itemId }) {
   const aumentar = async () => {
     try {
       await axios.patch(
-        `http://localhost:8080/pedidos/aumentar/${itemId}`, null, 
+        `http://localhost:8080/pedidos/aumentar/${itemId}`,
+        null,
         {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         }
       );
-      window.location.reload();
+      setTimeout(() => {
+        window.location.reload();
+      }, 200);
       return true;
     } catch (error) {
       alert("Não foi possível aumentar a quantidade!");
