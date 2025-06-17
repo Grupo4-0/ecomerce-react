@@ -1,0 +1,205 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root {
+  --cor-primaria: #F1396D;
+  --cor-secundaria: #ACC95F;
+  --subcor-primaria: #F6ABBB;
+  --subcor-secundaria: #457F4B;
+  --cor-titulo: #121111;
+  --cor-subtitulo: #8F8F8F;
+  --cor-cinza: #E7E7E7;
+}
+
+.container {
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.267);
+  padding: 2rem;
+  font-family: 'Poppins', sans-serif;
+}
+
+.cardWrapper {
+  margin-top: 0rem;
+}
+
+.titulo {
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  font-weight: 15px;
+  display: flex;
+  align-items: center;
+  color: var(--cor-primaria);
+}
+
+.carouselContainer {
+  position: relative;
+  overflow: hidden;
+}
+
+.listaCards {
+  list-style: none;
+  display: flex;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  gap: 1rem;
+  padding: 1rem 0;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+
+.listaCards::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+.cardAtual {
+  flex: 0 0 auto;
+  width: 280px;
+  scroll-snap-align: start;
+}
+
+.botaoNav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.95);
+  color: var(--cor-primaria, #333);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15), 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-50%) scale(0.8);
+}
+
+.botaoEsquerda {
+  left: 12px;
+}
+
+.botaoDireita {
+  right: 12px;
+}
+
+/* Animação de entrada dos botões */
+.carouselContainer:hover .botaoNav {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(-50%) scale(1);
+}
+
+/* Efeitos hover nos botões */
+.botaoNav:hover {
+  background: rgba(255, 255, 255, 1);
+  transform: translateY(-50%) scale(1.1);
+  box-shadow: 
+    0 6px 20px rgba(0, 0, 0, 0.2),
+    0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.botaoNav:active {
+  transform: translateY(-50%) scale(0.95);
+  transition-duration: 0.1s;
+}
+
+/* Gradiente nas bordas para indicar que há mais conteúdo */
+.carouselContainer::before,
+.carouselContainer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 60px;
+  z-index: 5;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.carouselContainer::before {
+  left: 0;
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.1) 0%,
+    transparent 100%
+  );
+}
+
+.carouselContainer::after {
+  right: 0;
+  background: linear-gradient(
+    to left,
+    rgba(0, 0, 0, 0.1) 0%,
+    transparent 100%
+  );
+}
+
+.carouselContainer:hover::before,
+.carouselContainer:hover::after {
+  opacity: 1;
+}
+
+/* Mensagem vazia */
+.mensagemVazia {
+  text-align: center;
+  padding: 2rem;
+  color: var(--cor-subtitulo);
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Animação suave para entrada dos cards */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.cardAtual {
+  animation: fadeIn 0.6s ease-out;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .botaoNav {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .botaoEsquerda {
+    left: 8px;
+  }
+  
+  .botaoDireita {
+    right: 8px;
+  }
+  
+  .carouselContainer::before,
+  .carouselContainer::after {
+    width: 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 1rem;
+  }
+  
+  .cardAtual {
+    width: 250px;
+  }
+  
+  .botaoNav {
+    width: 36px;
+    height: 36px;
+  }
+}

@@ -1,0 +1,247 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root {
+  --cor-primaria: #F1396D;
+  --cor-secundaria: #ACC95F;
+  --subcor-primaria: #F6ABBB;
+  --subcor-secundaria: #457F4B;
+  --cor-titulo: #121111;
+  --cor-subtitulo: #8F8F8F;
+  --cor-cinza: #E7E7E7;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.body {
+  align-items: center;
+  justify-content: center;
+  background-color: #FFE5EB;
+  font-family: 'Poppins', sans-serif;
+}
+
+.principal {
+  width: 1000px;
+  height: 500px;
+  background-color: #FDFDFD;
+  display: flex;
+  flex-direction: row;
+  border-radius: 38px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.painelEsquerdo {
+  width: 700px;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+}
+
+.heder {
+  width: 780px;
+  height: 70px;
+  background-color: #E7E7E7;
+  border-top-left-radius: 38px;
+}
+
+.heder button { 
+  font-family: 'Poppins', sans-serif;
+  gap: 8px; 
+  padding: 10px 20px;
+  background-color: var(--cor-primaria);
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  border-radius: 25px;
+  transition: background 0.3s;
+}
+
+.painelEsquerdo h2 {
+  color: var(--cor-primaria);
+  font-family: 'Poppins', sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.dados {
+  width: 100%;
+  max-width: 400px;
+  margin: auto;
+}
+
+.dados h2 {
+  color: var(--cor-primaria);
+  font-family: 'Poppins', sans-serif;
+  font-size: 28px;
+  font-weight: 800;
+  font-style: normal;
+  text-align:left;
+  margin-bottom: 25px;
+}
+
+.dados form {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.dados input {
+  font-family: 'Poppins', sans-serif;
+  font-size: 12px;
+  font-weight: 300;
+  font-style: normal;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  background-color: var(--cor-cinza);
+  border-radius: 25px;
+  outline: none;
+}
+
+.dados input:focus {
+  border-color: #f1396d;
+  box-shadow: 0 0 5px var(--cor-primaria);
+  background-color: var(--cor-cinza);
+}
+
+.buttonEntrar {
+  display: flex;
+  align-items: center;
+  justify-content: center; 
+  gap: 8px; 
+  padding: 10px 20px;
+  background-color: var(--cor-primaria);
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  border-radius: 25px;
+  transition: background 0.3s;
+}
+
+.buttonEntrar:focus {
+  background-color: var(--subcort-primaria);
+}
+
+.dados img {
+  vertical-align: middle;
+}
+
+.inputSenha {
+  position: relative;
+  width: 100%;
+}
+
+.inputSenha input {
+  width: 100%;
+  padding: 10px 40px 10px 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 25px;
+}
+
+.toggleSenha {
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  transform: translateY(-40%);
+  background: transparent;
+  outline: none;
+  border: none;
+  font-size: 18px;
+}
+
+.toggleSenha:hover,
+.toggleSenha:focus {
+  outline: none;
+  border: none;
+}
+
+.header {
+  width: 100%;
+  background-color: white;
+  border-top-left-radius: 38px;
+  padding: 20px 40px;
+  font-family: 'Poppins', sans-serif;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navEsquerda,
+.navDireita {
+  display: flex;
+  gap: 30px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: var(--cor-secundaria);
+  font-weight: 500;
+  font-size: 1rem;
+  padding: 8px 16px;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+}
+
+.comum a:hover {
+  background-color: var(--subcor-primaria);
+  color: var(--cor-titulo);
+}
+
+.cadastro a {
+  border-color: var(--cor-primaria);
+  color: var(--cor-primaria);
+  font-weight: 600;
+  border: 2px solid transparent;
+}
+
+.cadastro a:hover {
+  background-color: var(--cor-clara);
+  color: var(--cor-primaria);
+  border: 2px solid var(--cor-primaria);
+}
+
+.painelDireito {
+  width: 300px;
+  height: 500px;
+  position: relative;
+  background-color: #8F8F8F;
+  border-top-right-radius: 38px;
+  border-bottom-right-radius: 38px;
+  
+}
+
+.imagem {
+  width: 100%;
+  height: 100%;
+  display: block;
+  border-top-right-radius: 38px;
+  border-bottom-right-radius: 38px;
+}
+
+.tituloImagem {
+  position: absolute;
+  top: 40px;
+  left: 80px;
+  color: white;
+  font-size: 2rem;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 200;
+  font-style: normal;
+}

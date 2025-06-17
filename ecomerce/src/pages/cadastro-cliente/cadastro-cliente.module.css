@@ -1,0 +1,225 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+/* html,
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100vw;
+    background-image: url('../../assets/imagempata.avif');
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+} */
+
+.label {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.pagina {
+    display: flex;
+    align-items: center;
+    width: 1200px;
+    height: 848.33px;
+    font-family: 'Poppins', sans-serif;
+    justify-items: center;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    border-radius: 30px;
+}
+
+.painelEsquerdo {
+    height: 100%;
+    width: 35%;
+    background: linear-gradient(to bottom, #34552b, #648057);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 30px 0 0 30px;
+}
+
+.imagemGato {
+    width: 100%;
+    height: 100%;
+    border-radius: 24px;
+    object-fit: cover;
+    /* Melhora a exibição da imagem */
+}
+
+.painelDireito {
+    flex: 1;
+    height: 100%;
+    padding: 25px;
+    background-color: white;
+    border-radius: 0 30px 30px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+    /* Remove todas as barras de rolagem */
+    box-sizing: border-box;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.navbar ul {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.titulo {
+    font-weight: bold;
+    color: #ec2c7c;
+    font-size: clamp(24px, 4vw, 35px);
+    /* Responsivo */
+}
+
+.navItem {
+    margin: 0 10px;
+    color: #a0a000;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: clamp(12px, 2vw, 16px);
+}
+
+.navItemLogin {
+    margin: 0 10px;
+    color: #a0a000;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: clamp(12px, 2vw, 16px);
+}
+
+.form {
+    margin-top: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    flex: 1;
+    justify-content: center;
+}
+
+.formNome {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.labelItens {
+    align-self: flex-start;
+    margin-bottom: 5px;
+    color: #000000;
+    font-weight: 500;
+}
+
+.formNome input {
+    border-radius: 9999px;
+    height: 35px;
+    width: 100%;
+    max-width: 100%;
+    font-family: 'Poppins';
+    font-size: 16px;
+    padding: 15px;
+    border: 2px solid #ddd;
+    box-sizing: border-box;
+}
+
+.password {
+    display: flex;
+    gap: 15px;
+    position: relative;
+    justify-content: space-between;
+}
+
+.password>div {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.password input {
+    border-radius: 9999px;
+    height: 35px;
+    width: 100%;
+    font-family: 'Poppins';
+    font-size: 16px;
+    padding: 15px;
+    border: 2px solid #ddd;
+    box-sizing: border-box;
+}
+
+.toggleSenha:hover,
+.toggleSenha:focus {
+    outline: none;
+    border: none;
+}
+
+.ButtonEnviar {
+    background-color: #ec2c7c;
+    color: white;
+    border: none;
+    padding: 11px;
+    border-radius: 9999px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 12px;
+    width: min(280px, 100%);
+    align-self: center;
+    font-family: 'Poppins';
+    font-size: 15px;
+}
+
+.bottomLink {
+    text-align: center;
+    margin-top: 1px;
+    color: #a0a000;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.labelGenero {
+    color: #000000;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+/* Media query para telas menores */
+@media (max-width: 768px) {
+    .pagina {
+        width: 95vw;
+        height: 90vh;
+        flex-direction: column;
+    }
+
+    .painelEsquerdo {
+        width: 100%;
+        height: 30%;
+        border-radius: 30px 30px 0 0;
+    }
+
+    .painelDireito {
+        width: 100%;
+        height: 70%;
+        border-radius: 0 0 30px 30px;
+        padding: 20px;
+    }
+
+    .password {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+}
