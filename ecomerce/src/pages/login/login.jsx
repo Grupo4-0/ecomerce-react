@@ -72,15 +72,12 @@ export function Login() {
 
   async function cliente(token) {
     try {
-      const response = await axios.get(
-        `http://localhost:8080/login/ehCliente?token=${token}`,
-        {
-          headers: {
-            "Access-Control-Allow-Origin": "*",
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const response = await axios.get(`http://localhost:8080/login/ehCliente?token=${token}`, {
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Content-Type": "application/json",
+        },
+      });
       console.log("Chegou", response.data);
       return response.data;
     } catch (error) {
@@ -127,12 +124,7 @@ export function Login() {
         <div className={style.dados}>
           <h2>Login</h2>
           <form className={style.inputSenha} onSubmit={handleSubmit}>
-            <input
-              type="email"
-              name="email"
-              placeholder=" E-mail"
-              onChange={handleInputChange}
-            />
+            <input type="email" name="email" placeholder=" E-mail" onChange={handleInputChange} />
             <div className={style.inputSenha}>
               <input
                 type={showPassword ? "text" : "password"}
@@ -140,24 +132,12 @@ export function Login() {
                 placeholder=" Senha"
                 onChange={handleInputChange}
               />
-              <button
-                type="button"
-                onClick={() => setShowPassword(!showPassword)}
-                className={style.toggleSenha}
-              >
-                {showPassword ? (
-                  <Eye size="20" color="#8F8F8F" />
-                ) : (
-                  <EyeOff size="20" color="#8F8F8F" />
-                )}
+              <button type="button" onClick={() => setShowPassword(!showPassword)} className={style.toggleSenha}>
+                {showPassword ? <Eye size="20" color="#8F8F8F" /> : <EyeOff size="20" color="#8F8F8F" />}
               </button>
             </div>
 
-            <button
-              className={style.buttonEntrar}
-              type="submit"
-              disabled={loading}
-            >
+            <button className={style.buttonEntrar} type="submit" disabled={loading}>
               {!loading && <PawPrint />}{" "}
               {loading ? (
                 <img

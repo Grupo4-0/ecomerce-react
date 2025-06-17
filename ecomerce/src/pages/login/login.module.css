@@ -17,7 +17,7 @@
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-body {
+.body {
   align-items: center;
   justify-content: center;
   background-color: #FFE5EB;
@@ -167,7 +167,7 @@ body {
 
 .header {
   width: 100%;
-  background-color: var(--cor-fundo);
+  background-color: white;
   border-top-left-radius: 38px;
   padding: 20px 40px;
   font-family: 'Poppins', sans-serif;
