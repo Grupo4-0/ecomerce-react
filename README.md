@@ -46,9 +46,3 @@ Conheça as pessoas incríveis que construíram o projeto **Wardiere – Pet Sho
 | Lívia Raissinger  | [Lívia Raissinger](https://www.linkedin.com/in/liviaraissinger)          | [@Livia9](https://github.com/Livia9)                 |
 | Nathan Gomes      | [Nathan Gomes](https://www.linkedin.com/in/nathan-gomes-707162270)       | [@NathandGomes](https://github.com/NathandGomes)     |
 | Thais Costa       | [Thais Costa](https://www.linkedin.com/in/thais-costa-da-silva-9a4914291/)| [@tatacost](https://github.com/tatacost)            |
-
-
-## 📄 Status do Projeto
-
-🛠️ README em construção...  
-Mais informações serão adicionadas em breve!🚧
