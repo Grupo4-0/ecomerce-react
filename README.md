@@ -39,29 +39,13 @@ Este projeto tem como objetivo apresentar uma plataforma fictícia de pet shop c
 
 Conheça as pessoas incríveis que construíram o projeto **Wardiere – Pet Shop**:
 
-<ul>
-  <li>
-    <a href="https://www.linkedin.com/in/maria-arag%C3%A3o-b136822b2?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank">Maria Araguão</a><br>
-    🔗 <a href="https://github.com/Maria-S-Aragao" target="_blank">GitHub</a>
-  </li>
-  <li>
-    <a href="http://linkedin.com/in/jcboaretto" target="_blank">José Netto</a><br>
-    🔗 <a href="https://github.com/jcboaretto" target="_blank">GitHub</a>
-  </li>
-  <li>
-    <a href="https://www.linkedin.com/in/liviaraissinger" target="_blank">Lívia Raissinger</a><br>
-    🔗 <a href="https://github.com/Livia9" target="_blank">GitHub</a>
-  </li>
-  <li>
-    <a href="https://www.linkedin.com/in/nathan-gomes-707162270?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank">Nathan Gomes</a><br>
-    🔗 <a href="https://github.com/NathandGomes" target="_blank">GitHub</a>
-  </li>
-  <li>
-    <a href="https://www.linkedin.com/in/thais-costa-da-silva-9a4914291/" target="_blank">Thais Costa</a><br>
-    🔗 <a href="https://github.com/tatacost" target="_blank">GitHub</a>
-  </li>
-</ul>
-
+| Nome              | LinkedIn                                                                 | GitHub                        |
+|-------------------|--------------------------------------------------------------------------|-------------------------------|
+| Maria Araguão     | [Maria Araguão](https://www.linkedin.com/in/maria-arag%C3%A3o-b136822b2) | [@Maria-S-Aragao](https://github.com/Maria-S-Aragao) |
+| José Netto        | [José Netto](http://linkedin.com/in/jcboaretto)                          | [@jcboaretto](https://github.com/jcboaretto)         |
+| Lívia Raissinger  | [Lívia Raissinger](https://www.linkedin.com/in/liviaraissinger)          | [@Livia9](https://github.com/Livia9)                 |
+| Nathan Gomes      | [Nathan Gomes](https://www.linkedin.com/in/nathan-gomes-707162270)       | [@NathandGomes](https://github.com/NathandGomes)     |
+| Thais Costa       | [Thais Costa](https://www.linkedin.com/in/thais-costa-da-silva-9a4914291/)| [@tatacost](https://github.com/tatacost)            |
 
 
 ## 📄 Status do Projeto
